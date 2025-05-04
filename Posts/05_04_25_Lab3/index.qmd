@@ -1,0 +1,12 @@
+---
+title: "Lab 3"
+description: "Static Quarto Dashboard"
+author:
+  - name: Sydney Potkey
+    url: https://SydneyPotkey.github.io/
+date: 05-04-2025
+citation: 
+  url: https://SydneyPotkey.github.io/Posts/05_04_25_Lab3/ 
+image: "images/download.png"
+draft: false 
+---

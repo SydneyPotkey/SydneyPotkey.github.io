@@ -2,9 +2,16 @@
   {
     "objectID": "Blog.html",
     "href": "Blog.html",
-    "title": "Blog",
+    "title": "My Blog",
     "section": "",
-    "text": "blog blog blog"
+    "text": "Lab 3\n\n\nStatic Quarto Dashboard\n\n\n\nSydney Potkey\n\n\nMay 4, 2025\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "Posts/05_04_25_Lab3/index.html",
+    "href": "Posts/05_04_25_Lab3/index.html",
+    "title": "Lab 3",
+    "section": "",
+    "text": "CitationBibTeX citation:@online{potkey2025,\n  author = {Potkey, Sydney},\n  title = {Lab 3},\n  date = {2025-05-04},\n  url = {https://SydneyPotkey.github.io/Posts/05_04_25_Lab3/},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nPotkey, Sydney. 2025. “Lab 3.” May 4, 2025. https://SydneyPotkey.github.io/Posts/05_04_25_Lab3/."
   },
   {
     "objectID": "about.html",
