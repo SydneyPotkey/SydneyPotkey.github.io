@@ -1,15 +1,19 @@
 ---
-title: "SydneyPotkey.github.io"
+title: "SydneyPotkey"
+image: "images/IMG_3363.jpg"
+toc: false
+about:
+  template: jolla
+  image-shape: round
+  image-width: 17em
+  links: 
+    - text: Github
+      href: https://github.com/SydneyPotkey
+      aria-label: GitHub
+    - text: Email
+      href: "mailto:sydneygp72@gmail.com"
+      aria-label: Email
 project:
   type: website
-  output-dir: docs
-  
 ---
 
-This is a Quarto website.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
-
-```{r}
-1 + 1
-```
