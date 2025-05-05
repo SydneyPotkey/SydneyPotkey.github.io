@@ -13,6 +13,7 @@ draft: false
 
 ```{r}
 #| label: packages-setup
+#| message: false
 
 library(tidyverse)
 library(ggridges)

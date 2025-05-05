@@ -16,19 +16,22 @@ draft: false
 ```{r}
 #| label: read-in-wellcome-data
 #| message: false
+#| echo: false
 library(tidyverse)
 library(readxl)
-world_data <- read_excel("/Users/sydneypotkey/Desktop/wgm2018-dataset-crosstabs-all-countries.xlsx", sheet = 1)
-world_data_full <- read_excel("/Users/sydneypotkey/Desktop/wgm2018-dataset-crosstabs-all-countries.xlsx", sheet = 2)
-world_data <- read_excel("/Users/sydneypotkey/Desktop/wgm2018-dataset-crosstabs-all-countries.xlsx", sheet = 3)
-head(df)
+world_data <- read_excel("data/wgm2018-dataset-crosstabs-all-countries.xlsx", sheet = 1)
+world_data_full <- read_excel("data/wgm2018-dataset-crosstabs-all-countries.xlsx", sheet = 2)
+world_data <- read_excel("data/wgm2018-dataset-crosstabs-all-countries.xlsx", sheet = 3)
+
 
 ```
 ## Filtering the Data
 ```{r}
+#| label: filtering data
 #| message: false
 #| warning: false
 
+#splitting long string of words into seprate country names
 data_dictionary <- world_data |>
   filter(`Variable Name` == "WP5") |>
   mutate(code_list = str_split(`Variable Type & Codes*`, ",")) |>
@@ -39,16 +42,18 @@ data_dictionary <- world_data |>
   mutate(WP5 = as.character(WP5))
 
 
+#ensuring character variable
 world_data_full <- world_data_full |> 
   mutate(WP5 = as.character(WP5))
 
   
-
+#joining by country 
 joined_data <- inner_join(world_data_full, data_dictionary, by = "WP5" )
 
 joined <- joined_data |>
   select(country, Q25, Regions_Report)
 
+#creating regions for scatter plot 
 graph_data <- joined |> 
   mutate(region = case_when(Regions_Report %in% c(9, 10, 11, 12)~"Asia", Regions_Report %in% c(1, 2, 4, 5)~"Sub-Saharan Africa", Regions_Report %in% c(6, 7, 8)~"Americas", Regions_Report %in% c(14, 15, 16, 17)~"Europe", Regions_Report == 18~"Australia & NZ", Regions_Report %in% c(3, 13)~"North Africa & Middle East")) |>
   filter(!is.na(region)) |>
@@ -59,6 +64,7 @@ graph_data <- joined |>
   ) |> 
   arrange(desc(percent_agree)) 
 
+#replicating process for proportion of those who studied science
 science_percent <- joined_data |> 
   group_by(country) |> 
   summarise(
@@ -85,11 +91,14 @@ same story better.
 library(scales)
 library(ggiraph)
 
+
+#color pallete for graph
 cbp2 <- c("#000000", "#E69F00", "#56B4E9", "#009E73",
           "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
   
 
+#scatter plot
 plot <- ggplot(data = graph_data, aes(y = percent_agree/100, x = country, color = region, tooltip = country, data_id = country)) +
   geom_point_interactive(size = 2) + 
   facet_grid(~region, labeller = label_wrap_gen(width = 15)) +
@@ -105,7 +114,7 @@ plot <- ggplot(data = graph_data, aes(y = percent_agree/100, x = country, color 
         plot.title = element_text(face = "bold")) 
 
     
-  
+#ggiraph interactive element
   geom_point_interactive(aes(x = wt, y = qsec, color = disp,
     tooltip = carname, data_id = carname))
   
@@ -156,7 +165,7 @@ The main problem is the legend. The scale used for the legen is not standard and
 #| label: second-improved-visualization
 #| warning: false
 
-
+#load packages
 library(leaflet)
 library(data.table)
 library(tidyverse)
@@ -167,19 +176,24 @@ library(rnaturalearthhires)
 
 
 
-world <- ne_countries(scale = "medium", returnclass = "sf")
+world <- ne_countries(scale = "medium",
+                      returnclass = "sf")
 
 science_percent <- science_percent |> 
   mutate(country = tolower(trimws(country)))
 
+#trimming so join works
 world <- world |> 
   mutate(country = tolower(trimws(name)))
 
-map_data <- left_join(world, science_percent, by = "country") |> 
+#joining by country
+map_data <- left_join(world, science_percent,
+                      by = "country") |> 
   filter(!is.na(percent_studied_science))
 
-
-pal <- colorNumeric("Greens", domain = map_data$percent_science)
+#color pallette
+pal <- colorNumeric("Greens",
+                    domain = map_data$percent_science)
 
 
 leaflet(map_data) |> 
@@ -242,10 +256,13 @@ This graph is very misleading since it uses figures as the bars i the bar chart.
 
 library(cowplot)
 
+#creating data frame
 df <- data.frame(country = c("Latvia", "Australia", "Scotland", "Peru", "South Africa", "India"), Height = c(65, 64, 64, 64, 62, 60))
 
 pink_palette <- c("#FEC5E5", "#F79AC0", "#FD5DA8", "#FF1480", "#F25278", "#DB7093")
 
+
+#converting to feet
 feet <- function(x) {
   feet <- floor(x / 12)
   inches <- round(x %% 12)
@@ -253,7 +270,7 @@ feet <- function(x) {
 }
 
 
-
+#bar chart 
 ggplot(data = df, aes( x = country, y = Height, fill = country)) + 
   geom_bar(stat = "identity") +
   scale_fill_manual(values = pink_palette) + 

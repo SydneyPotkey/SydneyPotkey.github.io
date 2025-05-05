@@ -40,7 +40,7 @@ num_to_cat_levels <- function(x){
 # 2 = Proficient
 # 3 = Virtuoso
 
-my_level <- 1
+my_level <- 3
 
 portfolio_levels <- portfolio_levels %>%
   bind_rows(
@@ -53,7 +53,7 @@ portfolio_levels <- portfolio_levels %>%
 
 ### Justification:
 
-<!-- Insert references to the work shown in the blog(s) on your personal website -->
+Lab 2 Enhanced visualization #1. In this graph I used the ggiraph package to add an interactive element to my scatter plot. 
 
 ## \[IL-2\] Online resources:
 
@@ -66,7 +66,7 @@ portfolio_levels <- portfolio_levels %>%
 #| label: IL-2
 
 ## Fill in the line below with your self-assigned level for this objective.
-my_level <- 1
+my_level <- 3
 
 portfolio_levels <- portfolio_levels %>%
   bind_rows(
@@ -79,7 +79,9 @@ portfolio_levels <- portfolio_levels %>%
 
 ### Justification:
 
-<!-- Insert references to the work shown in the blog(s) on your personal website -->
+Lab 2 Fixing bad Visualizations, Graph 2. Here I used chat gpt to help me figure out how to access the natural earth hires packge from git hub, something that I had never done before. 
+
+Lab 4 Interactive Dashboards. I had never used shiny before, so I used multiple youtube tutorials, as well as the provided source code to guide my project.
 
 ## IL Summary
 
@@ -120,7 +122,7 @@ portfolio_levels %>%
 #| include: false
 #| label: RW-1
 
-my_level <- 2
+my_level <- 1
 
 portfolio_levels <- portfolio_levels %>%
   bind_rows(
@@ -133,7 +135,7 @@ portfolio_levels <- portfolio_levels %>%
 
 ### Justification:
 
-Refrence: SydneyPotkey.github.io on my github profile to see commits and organization.
+I have not done the best thus far at committing regularly, but am making an effort now to commit more often! This is an area I could definitley improve in for my final portfolio. 
 
 ## \[RW-2\] Notebooks:
 
@@ -144,7 +146,7 @@ Refrence: SydneyPotkey.github.io on my github profile to see commits and organiz
 #| include: false
 #| label: RW-2
 
-my_level <- 3
+my_level <- 2
 
 portfolio_levels <- portfolio_levels %>%
   bind_rows(
@@ -155,8 +157,8 @@ portfolio_levels <- portfolio_levels %>%
 
 ### Level: `r my_level`
 
-### Justification:
-
+### Justification: 
+Lab 1 Quarto intro. I use code chunk options such as echo and eval to produce a cleaner looking html. I also make sure to use the label code chunk option consistently for organization. Along with this I use a theme for a more visually appealing document.
 
 
 ## \[RW-3\] Code style
@@ -167,7 +169,7 @@ portfolio_levels <- portfolio_levels %>%
 #| include: false
 #| label: RW-3
 
-my_level <- 1
+my_level <- 2
 
 portfolio_levels <- portfolio_levels %>%
   bind_rows(
@@ -180,7 +182,7 @@ portfolio_levels <- portfolio_levels %>%
 
 ### Justification
 
-<!-- Insert references to the work shown in the blog(s) on your personal website -->
+Lab 2 Fixing Bad Visualizations. The best example of this is filtering the code used for my visualizations. Here well commented code was necessary for clarity. I could improve my consistency in this are as my code is not always this well organized. 
 
 ## RW Summary
 
