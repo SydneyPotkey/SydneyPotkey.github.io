@@ -1,0 +1,20 @@
+---
+title: "Lab 4"
+description: "Interactive Dashboard"
+author:
+  - name: Sydney Potkey
+    url: https://SydneyPotkey.github.io/
+date: 05-04-2025
+citation: 
+  url: https://SydneyPotkey.github.io/Posts/05_04_25_Lab4/ 
+image: "images/download.jpg"
+draft: false 
+---
+
+<center>
+
+<iframe src="https://sydneypotkey.shinyapps.io/lab_4_submission/" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">
+
+</iframe>
+
+</center>

@@ -10,3 +10,11 @@ citation:
 image: "images/download.png"
 draft: false 
 ---
+
+<center>
+
+<iframe src="https://sydneypotkey.quarto.pub/lab-3/" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">
+
+</iframe>
+
+</center>

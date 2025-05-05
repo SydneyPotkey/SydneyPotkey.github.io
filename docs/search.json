@@ -4,7 +4,217 @@
     "href": "Blog.html",
     "title": "My Blog",
     "section": "",
-    "text": "Lab 3\n\n\nStatic Quarto Dashboard\n\n\n\nSydney Potkey\n\n\nMay 4, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "Independent Learning (IL):\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLab 2\n\n\nFixing Bad Graphics\n\n\n\nSydney Potkey\n\n\nMay 4, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nLab 4\n\n\nInteractive Dashboard\n\n\n\nSydney Potkey\n\n\nMay 4, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nLab 3\n\n\nStatic Quarto Dashboard\n\n\n\nSydney Potkey\n\n\nMay 4, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nLab 1\n\n\nQuarto Intro\n\n\n\nSydney Potkey\n\n\nMay 4, 2025\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html",
+    "title": "Independent Learning (IL):",
+    "section": "",
+    "text": "Download the source code for the template here:\nreflection-template.qmd"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#il-1-adding-new-skills",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#il-1-adding-new-skills",
+    "title": "Independent Learning (IL):",
+    "section": "[IL-1] Adding new skills:",
+    "text": "[IL-1] Adding new skills:\n\nI can find and adopt new packages to accomplish tasks.\nI can adapt to different syntax styles (tidy, base, formula style, data.table).\n\n\nLevel: 1\n\n\nJustification:"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#il-2-online-resources",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#il-2-online-resources",
+    "title": "Independent Learning (IL):",
+    "section": "[IL-2] Online resources:",
+    "text": "[IL-2] Online resources:\n\nI can use online resources (e.g., Google, ChatGPT, StackOverflow, YouTube) to solve problems, debug, or find new tools.\nI can use tutorials, etc. to enhance my understanding of new concepts.\nI can find source code for similar projects to use as starting points for my own.\n\n\nLevel: 1\n\n\nJustification:"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#il-summary",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#il-summary",
+    "title": "Independent Learning (IL):",
+    "section": "IL Summary",
+    "text": "IL Summary"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#rw-1-file-code-and-data-management",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#rw-1-file-code-and-data-management",
+    "title": "Independent Learning (IL):",
+    "section": "[RW-1] File, code, and data management:",
+    "text": "[RW-1] File, code, and data management:\n\nI can use Git and GitHub to track my progress (creating repos, cloning, forking, pull requesting).\nI always use R Projects and the {here} package to organize my scripts, notebooks, data, and applications.\nI always use pull requests when collaborating with others.\n\n\nLevel: 2\n\n\nJustification:\nRefrence: SydneyPotkey.github.io on my github profile to see commits and organization."
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#rw-2-notebooks",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#rw-2-notebooks",
+    "title": "Independent Learning (IL):",
+    "section": "[RW-2] Notebooks:",
+    "text": "[RW-2] Notebooks:\n\nI can use Quarto to produce a reproducible notebook and polished rendered documents\nI can use appropriate chunk options (echo, error, cache, etc.) to render my Quarto document quickly and cleanly.\n\n\nLevel: 3\n\n\nJustification:"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#rw-3-code-style",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#rw-3-code-style",
+    "title": "Independent Learning (IL):",
+    "section": "[RW-3] Code style",
+    "text": "[RW-3] Code style\n\nMy code is clear, readable, well-organized, and well-commented.\n\n\nLevel: 1\n\n\nJustification"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#rw-summary",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#rw-summary",
+    "title": "Independent Learning (IL):",
+    "section": "RW Summary",
+    "text": "RW Summary"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#tc-1-project-summaries",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#tc-1-project-summaries",
+    "title": "Independent Learning (IL):",
+    "section": "[TC-1] Project summaries:",
+    "text": "[TC-1] Project summaries:\n\nI can create clear and succinct summaries of a project.\nI accurately interpret statistical or modeling results.\nI consider the appropriate scope and impact of my project results.\n\n\nLevel: 1\n\n\nJustification:"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#tc-2-documentation",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#tc-2-documentation",
+    "title": "Independent Learning (IL):",
+    "section": "[TC-2] Documentation:",
+    "text": "[TC-2] Documentation:\n\nI can create a user-friendly dashboard.\nI provide ample documentation for my custom functions.\n\n\nLevel: 1\n\n\nJustification:"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#tc-summary",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#tc-summary",
+    "title": "Independent Learning (IL):",
+    "section": "TC Summary",
+    "text": "TC Summary"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#dm-1-data-preparation",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#dm-1-data-preparation",
+    "title": "Independent Learning (IL):",
+    "section": "[DM-1] Data Preparation",
+    "text": "[DM-1] Data Preparation\n\nI can read in datasets to R, including untidy ones.\nI can clean datasets to deal with missing data, typos, poor formatting, etc.\n\n\nLevel: 3\n\n\nJustification:\nThe best example of this is the world data from lab 2. I read in the excel files, wrangled the data into a few different data sets that worked best for specific graphs. Then I wrote them into csv files to be used for Labs 3 and 4."
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#dm-2-data-wrangling",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#dm-2-data-wrangling",
+    "title": "Independent Learning (IL):",
+    "section": "[DM-2] Data Wrangling",
+    "text": "[DM-2] Data Wrangling\n\nI can cleverly use pivoting, separating, grouping, and joining to wrangle data.\nI can use mapping (purrr) to perform repeated tasks.\n\n\nLevel: 1\n\n\nJustification:"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#dm-3-data-formats",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#dm-3-data-formats",
+    "title": "Independent Learning (IL):",
+    "section": "[DM-3] Data Formats",
+    "text": "[DM-3] Data Formats\n\nI can use API urls to access JSON data and convert it into a data frame\nI can scrape data from the web and convert it into a data frame\n\n\n## Fill in the line below with your self-assigned level for this objective.\nmy_level &lt;- 1\n\nportfolio_levels &lt;- portfolio_levels %&gt;%\n  bind_rows(tibble(Objective = \"DM-3\", \n                   Level = my_level))\n\n\nLevel: 1\n\n\nJustification"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#dm-summary",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#dm-summary",
+    "title": "Independent Learning (IL):",
+    "section": "DM Summary",
+    "text": "DM Summary"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#pv-1-clear-accessible-visualizations",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#pv-1-clear-accessible-visualizations",
+    "title": "Independent Learning (IL):",
+    "section": "[PV-1] Clear & Accessible Visualizations",
+    "text": "[PV-1] Clear & Accessible Visualizations\n\nI can make my plots more clear by removing the legend and adding annotations.\nI can edit the titles, subtitles, captions, axis labels, etc. to create a clearly labelled plot.\nI can choose colors (“scales”) and themes to make a visually pleasing and accessible plot.\n\n\nLevel: 1\n\n\nJustification:"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#pv-2-dynamic-visualizations",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#pv-2-dynamic-visualizations",
+    "title": "Independent Learning (IL):",
+    "section": "[PV-2] Dynamic Visualizations",
+    "text": "[PV-2] Dynamic Visualizations\n\nI can use a package like {gganimate} to create self-contained gifs.\nI can use a package like {plotly}, {ggplotly}, {leaflet}, {ggirafe}, etc. to make interactive html widgets.\n\n\nLevel: 1\n\n\nJustification:"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#pv-3-interactive-visualizations",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#pv-3-interactive-visualizations",
+    "title": "Independent Learning (IL):",
+    "section": "[PV-3] Interactive Visualizations",
+    "text": "[PV-3] Interactive Visualizations\n\nI can use Shiny or webR to create visualizations that react to a user’s input.\n\n\nLevel: 1\n\n\nJustification:"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#pv-summary",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#pv-summary",
+    "title": "Independent Learning (IL):",
+    "section": "PV Summary",
+    "text": "PV Summary"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#cdai-1-r-programming-language",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#cdai-1-r-programming-language",
+    "title": "Independent Learning (IL):",
+    "section": "[CDAI-1] R Programming Language",
+    "text": "[CDAI-1] R Programming Language\n\nI understand non-standard evaluation (aka “tidy eval” or “unquoted objects”), and I can use tunneling in my functions.\nI understand functional programming, and I can use functions as objects in my code design.\n\n\nLevel: 1\n\n\nJustification:"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#cdai-2-object-handling",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#cdai-2-object-handling",
+    "title": "Independent Learning (IL):",
+    "section": "[CDAI-2] Object Handling",
+    "text": "[CDAI-2] Object Handling\n\nI have built in checks for possible input problems\nI can make reasonable choices in my code design about when to save intermediate objects.\nI can convert objects between types and structures as needed.\n\n\nLevel: 1\n\n\nJustification:"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#cdai-3-speed-and-efficiency",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#cdai-3-speed-and-efficiency",
+    "title": "Independent Learning (IL):",
+    "section": "[CDAI-3] Speed and Efficiency",
+    "text": "[CDAI-3] Speed and Efficiency\n\nI can recognize moments of possible slowdown in my code, and use built-in functions or parallelizing to speed them up.\nI always use and design vectorized functions whenever possible.\n\n\nLevel: 1\n\n\nJustification:"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#cdai-4-supporting-functions",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#cdai-4-supporting-functions",
+    "title": "Independent Learning (IL):",
+    "section": "[CDAI-4] Supporting Functions",
+    "text": "[CDAI-4] Supporting Functions\n\nI write helper / shortcut functions to streamline repeated tasks and make my code easier to read.\nI use intermediate functions to streamline repeated or looping processes.\n\n\nLevel: 1\n\n\nJustification:"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#cdai-5-algorithmic-process",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#cdai-5-algorithmic-process",
+    "title": "Independent Learning (IL):",
+    "section": "[CDAI-5] Algorithmic Process",
+    "text": "[CDAI-5] Algorithmic Process\n\nI can invent and implement my own iterative algorithm.\nMy loops are clean and efficient.\nI have built in checks for possible problems or extreme cases in the algorithm.\n\n\nLevel: 1\n\n\nJustification:"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#cdai-6-generative-art",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#cdai-6-generative-art",
+    "title": "Independent Learning (IL):",
+    "section": "[CDAI-6] Generative Art",
+    "text": "[CDAI-6] Generative Art\n\nI can apply a variety of generative art functions to make a visually pleasing piece.\nI can explain why particular changes to the code result in particular differences in the visualization.\n\n\nLevel: 1\n\n\nJustification:"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#cdai-summary",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#cdai-summary",
+    "title": "Independent Learning (IL):",
+    "section": "CDAI Summary",
+    "text": "CDAI Summary"
+  },
+  {
+    "objectID": "Posts/05_04_25_Midterm/midterm_template.html#grade",
+    "href": "Posts/05_04_25_Midterm/midterm_template.html#grade",
+    "title": "Independent Learning (IL):",
+    "section": "Grade",
+    "text": "Grade\nBased on the summary plot above, I believe I have earned a ____ in STAT 541.\n\nJustification"
+  },
+  {
+    "objectID": "Posts/05_04_25_Lab4/index.html",
+    "href": "Posts/05_04_25_Lab4/index.html",
+    "title": "Lab 4",
+    "section": "",
+    "text": "CitationBibTeX citation:@online{potkey2025,\n  author = {Potkey, Sydney},\n  title = {Lab 4},\n  date = {2025-05-04},\n  url = {https://SydneyPotkey.github.io/Posts/05_04_25_Lab4/},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nPotkey, Sydney. 2025. “Lab 4.” May 4, 2025. https://SydneyPotkey.github.io/Posts/05_04_25_Lab4/."
+  },
+  {
+    "objectID": "Posts/05_04_25_Lab2/index.html",
+    "href": "Posts/05_04_25_Lab2/index.html",
+    "title": "Lab 2",
+    "section": "",
+    "text": "library(tidyverse)\nlibrary(readxl)\nworld_data &lt;- read_excel(\"/Users/sydneypotkey/Desktop/wgm2018-dataset-crosstabs-all-countries.xlsx\", sheet = 1)\nworld_data_full &lt;- read_excel(\"/Users/sydneypotkey/Desktop/wgm2018-dataset-crosstabs-all-countries.xlsx\", sheet = 2)\nworld_data &lt;- read_excel(\"/Users/sydneypotkey/Desktop/wgm2018-dataset-crosstabs-all-countries.xlsx\", sheet = 3)\nhead(df)\n\n                                              \n1 function (x, df1, df2, ncp, log = FALSE)    \n2 {                                           \n3     if (missing(ncp))                       \n4         .Call(C_df, x, df1, df2, log)       \n5     else .Call(C_dnf, x, df1, df2, ncp, log)\n6 }                                           \n\n\n\n\n\ndata_dictionary &lt;- world_data |&gt;\n  filter(`Variable Name` == \"WP5\") |&gt;\n  mutate(code_list = str_split(`Variable Type & Codes*`, \",\")) |&gt;\n  select(code_list) |&gt;                      \n  unnest(code_list) |&gt;                       \n  mutate(code_list = str_trim(code_list)) |&gt; \n  separate(code_list, into = c(\"WP5\", \"country\"), sep = \"=\") |&gt;\n  mutate(WP5 = as.character(WP5))\n\n\nworld_data_full &lt;- world_data_full |&gt; \n  mutate(WP5 = as.character(WP5))\n\n  \n\njoined_data &lt;- inner_join(world_data_full, data_dictionary, by = \"WP5\" )\n\njoined &lt;- joined_data |&gt;\n  select(country, Q25, Regions_Report)\n\ngraph_data &lt;- joined |&gt; \n  mutate(region = case_when(Regions_Report %in% c(9, 10, 11, 12)~\"Asia\", Regions_Report %in% c(1, 2, 4, 5)~\"Sub-Saharan Africa\", Regions_Report %in% c(6, 7, 8)~\"Americas\", Regions_Report %in% c(14, 15, 16, 17)~\"Europe\", Regions_Report == 18~\"Australia & NZ\", Regions_Report %in% c(3, 13)~\"North Africa & Middle East\")) |&gt;\n  filter(!is.na(region)) |&gt;\n  group_by(country, region) |&gt; \n  summarise(total_respondents = n(),\n    agree = sum(Q25 == 1, na.rm = TRUE),\n    percent_agree = 100 * agree / total_respondents\n  ) |&gt; \n  arrange(desc(percent_agree)) \n\nscience_percent &lt;- joined_data |&gt; \n  group_by(country) |&gt; \n  summarise(\n    total_respondents = n(),\n    studied_science = sum(Q5C == 1, na.rm = TRUE),\n    percent_studied_science = 100 * studied_science / total_respondents\n  ) |&gt; \n  arrange(desc(percent_studied_science))\n\n\nImprove the visualization above by either re-creating it with the issues you identified fixed OR by creating a new visualization that you believe tells the same story better.\n\n\nlibrary(scales)\nlibrary(ggiraph)\n\ncbp2 &lt;- c(\"#000000\", \"#E69F00\", \"#56B4E9\", \"#009E73\",\n          \"#F0E442\", \"#0072B2\", \"#D55E00\", \"#CC79A7\")\n\n  \n\nplot &lt;- ggplot(data = graph_data, aes(y = percent_agree/100, x = country, color = region, tooltip = country, data_id = country)) +\n  geom_point_interactive(size = 2) + \n  facet_grid(~region, labeller = label_wrap_gen(width = 15)) +\n  labs(x = \"\", subtitle  = \"Percent Who Believe Vaccines Are Safe\", title = \"Percent of Population That Believe Vaccinces Are Safe by Region\", y = \"\") + \n  theme_light()+ \n  scale_color_manual(values = cbp2) +\n  scale_y_continuous(labels = label_percent()) +\n  theme(axis.text.x = element_blank(),\n        axis.ticks.x = element_blank(),\n        panel.grid.minor.x = element_blank(),\n        panel.grid.major.x = element_blank(),\n        legend.position = \"none\", \n        plot.title = element_text(face = \"bold\")) \n\n    \n  \n  geom_point_interactive(aes(x = wt, y = qsec, color = disp,\n    tooltip = carname, data_id = carname))\n\nmapping: x = ~wt, y = ~qsec, colour = ~disp, tooltip = ~carname, data_id = ~carname \ngeom_interactive_point: na.rm = FALSE, .ipar = c(\"data_id\", \"tooltip\", \"onclick\", \"hover_css\", \"selected_css\", \"tooltip_fill\", \"hover_nearest\")\nstat_identity: na.rm = FALSE\nposition_identity \n\n  girafe(ggobj = plot)"
+  },
+  {
+    "objectID": "Posts/05_04_25_Lab2/index.html#filtering-the-data",
+    "href": "Posts/05_04_25_Lab2/index.html#filtering-the-data",
+    "title": "Lab 2",
+    "section": "",
+    "text": "data_dictionary &lt;- world_data |&gt;\n  filter(`Variable Name` == \"WP5\") |&gt;\n  mutate(code_list = str_split(`Variable Type & Codes*`, \",\")) |&gt;\n  select(code_list) |&gt;                      \n  unnest(code_list) |&gt;                       \n  mutate(code_list = str_trim(code_list)) |&gt; \n  separate(code_list, into = c(\"WP5\", \"country\"), sep = \"=\") |&gt;\n  mutate(WP5 = as.character(WP5))\n\n\nworld_data_full &lt;- world_data_full |&gt; \n  mutate(WP5 = as.character(WP5))\n\n  \n\njoined_data &lt;- inner_join(world_data_full, data_dictionary, by = \"WP5\" )\n\njoined &lt;- joined_data |&gt;\n  select(country, Q25, Regions_Report)\n\ngraph_data &lt;- joined |&gt; \n  mutate(region = case_when(Regions_Report %in% c(9, 10, 11, 12)~\"Asia\", Regions_Report %in% c(1, 2, 4, 5)~\"Sub-Saharan Africa\", Regions_Report %in% c(6, 7, 8)~\"Americas\", Regions_Report %in% c(14, 15, 16, 17)~\"Europe\", Regions_Report == 18~\"Australia & NZ\", Regions_Report %in% c(3, 13)~\"North Africa & Middle East\")) |&gt;\n  filter(!is.na(region)) |&gt;\n  group_by(country, region) |&gt; \n  summarise(total_respondents = n(),\n    agree = sum(Q25 == 1, na.rm = TRUE),\n    percent_agree = 100 * agree / total_respondents\n  ) |&gt; \n  arrange(desc(percent_agree)) \n\nscience_percent &lt;- joined_data |&gt; \n  group_by(country) |&gt; \n  summarise(\n    total_respondents = n(),\n    studied_science = sum(Q5C == 1, na.rm = TRUE),\n    percent_studied_science = 100 * studied_science / total_respondents\n  ) |&gt; \n  arrange(desc(percent_studied_science))\n\n\nImprove the visualization above by either re-creating it with the issues you identified fixed OR by creating a new visualization that you believe tells the same story better.\n\n\nlibrary(scales)\nlibrary(ggiraph)\n\ncbp2 &lt;- c(\"#000000\", \"#E69F00\", \"#56B4E9\", \"#009E73\",\n          \"#F0E442\", \"#0072B2\", \"#D55E00\", \"#CC79A7\")\n\n  \n\nplot &lt;- ggplot(data = graph_data, aes(y = percent_agree/100, x = country, color = region, tooltip = country, data_id = country)) +\n  geom_point_interactive(size = 2) + \n  facet_grid(~region, labeller = label_wrap_gen(width = 15)) +\n  labs(x = \"\", subtitle  = \"Percent Who Believe Vaccines Are Safe\", title = \"Percent of Population That Believe Vaccinces Are Safe by Region\", y = \"\") + \n  theme_light()+ \n  scale_color_manual(values = cbp2) +\n  scale_y_continuous(labels = label_percent()) +\n  theme(axis.text.x = element_blank(),\n        axis.ticks.x = element_blank(),\n        panel.grid.minor.x = element_blank(),\n        panel.grid.major.x = element_blank(),\n        legend.position = \"none\", \n        plot.title = element_text(face = \"bold\")) \n\n    \n  \n  geom_point_interactive(aes(x = wt, y = qsec, color = disp,\n    tooltip = carname, data_id = carname))\n\nmapping: x = ~wt, y = ~qsec, colour = ~disp, tooltip = ~carname, data_id = ~carname \ngeom_interactive_point: na.rm = FALSE, .ipar = c(\"data_id\", \"tooltip\", \"onclick\", \"hover_css\", \"selected_css\", \"tooltip_fill\", \"hover_nearest\")\nstat_identity: na.rm = FALSE\nposition_identity \n\n  girafe(ggobj = plot)"
   },
   {
     "objectID": "Posts/05_04_25_Lab3/index.html",
@@ -12,6 +222,34 @@
     "title": "Lab 3",
     "section": "",
     "text": "CitationBibTeX citation:@online{potkey2025,\n  author = {Potkey, Sydney},\n  title = {Lab 3},\n  date = {2025-05-04},\n  url = {https://SydneyPotkey.github.io/Posts/05_04_25_Lab3/},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nPotkey, Sydney. 2025. “Lab 3.” May 4, 2025. https://SydneyPotkey.github.io/Posts/05_04_25_Lab3/."
+  },
+  {
+    "objectID": "Posts/05_04_25_Lab1/index.html",
+    "href": "Posts/05_04_25_Lab1/index.html",
+    "title": "Lab 1",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.4     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(ggridges)"
+  },
+  {
+    "objectID": "Posts/05_04_25_Lab1/index.html#quarto",
+    "href": "Posts/05_04_25_Lab1/index.html#quarto",
+    "title": "Lab 1",
+    "section": "Quarto",
+    "text": "Quarto\nFirst, let’s make sure you know how to use Markdown formatting to style a Quarto document.\n\nMake this text bold.\nMake this text italicized.\nMake these into a bullet point list:\n\nApples Bananas *Potatoes\n\nEdit the YAML to remove warning messages from being output in the rendered HTML file\nUsing code chunk options, make it so this chunk shows the plot but not the source code:\n\n\n\n\n\n\n\n\n\n\n\nUsing code chunk options, remove the messages about bandwidth geom_density_ridges() chose to use:\n\n\nggplot(data = mpg, \n       mapping = aes(y = manufacturer, x = hwy)) + \n  geom_density_ridges() +\n  labs(x = \"\",\n       y = \"\", \n       title = \"Highway Milage (mpg) for Different Car Manufacturers\"\n       )\n\n\n\n\n\n\n\n\n\nUsing code chunk options, make it so that these plots are printed side-by-side:\n\nggplot(data = mpg, \n       mapping = aes(y = manufacturer, x = hwy)) + \n  geom_boxplot() +\n  labs(x = \"\",\n       y = \"\", \n       title = \"Highway Milage (mpg) for Different Car Manufacturers\"\n       )\nggplot(data = mpg, \n       mapping = aes(y = manufacturer, x = hwy)) + \n  geom_density_ridges() +\n  labs(x = \"\",\n       y = \"\", \n       title = \"Highway Milage (mpg) for Different Car Manufacturers\"\n       )\n\nPicking joint bandwidth of 1.31\n\n\n\n\n\n\n\n\n\n\n\n\nUsing code chunk options, make it so this chunk shows the code but not the output:\n\n\n2 + 2\n\n\nUsing code chunk options, make it so the file can still knit even though this chunk has an error\n\n\n2 + a\n\nError: object 'a' not found\n\n\n\nUsing code chunk options, create a descriptive label for each of the code chunks above."
+  },
+  {
+    "objectID": "Posts/05_04_25_Lab1/index.html#data-wrangling-review",
+    "href": "Posts/05_04_25_Lab1/index.html#data-wrangling-review",
+    "title": "Lab 1",
+    "section": "Data Wrangling Review",
+    "text": "Data Wrangling Review\nSince you’ve already seen some ggplots, let’s do a bit of review on data handling. In this class, we will exclusively make use of tools from the tidyverse suite of packages to perform our data cleaning and wrangling operations. If you are less familiar with these packages or it’s been some time since you used them, I would strongly recommend referencing the function documentation!\nFor these problems, we will continue to work with the mpg data frame, making various changes to the data to clean it up.\n\nThe fl variable describes the type of fuel for each car, with levels: p, r, e, d, and c. Do some research into what each of these labels mean! Then, use the if_else() function to create a new variable (fuel_type) with two levels: petrol (any car using petrolium-based gas) and alternative energy (any car not using petrolium-based gas).\n\n\nglimpse(mpg)\n\nRows: 234\nColumns: 11\n$ manufacturer &lt;chr&gt; \"audi\", \"audi\", \"audi\", \"audi\", \"audi\", \"audi\", \"audi\", \"…\n$ model        &lt;chr&gt; \"a4\", \"a4\", \"a4\", \"a4\", \"a4\", \"a4\", \"a4\", \"a4 quattro\", \"…\n$ displ        &lt;dbl&gt; 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0, 2.0, 2.…\n$ year         &lt;int&gt; 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1999, 200…\n$ cyl          &lt;int&gt; 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 8, 8, …\n$ trans        &lt;chr&gt; \"auto(l5)\", \"manual(m5)\", \"manual(m6)\", \"auto(av)\", \"auto…\n$ drv          &lt;chr&gt; \"f\", \"f\", \"f\", \"f\", \"f\", \"f\", \"f\", \"4\", \"4\", \"4\", \"4\", \"4…\n$ cty          &lt;int&gt; 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17, 1…\n$ hwy          &lt;int&gt; 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25, 2…\n$ fl           &lt;chr&gt; \"p\", \"p\", \"p\", \"p\", \"p\", \"p\", \"p\", \"p\", \"p\", \"p\", \"p\", \"p…\n$ class        &lt;chr&gt; \"compact\", \"compact\", \"compact\", \"compact\", \"compact\", \"c…\n\nmpg$fl\n\n  [1] \"p\" \"p\" \"p\" \"p\" \"p\" \"p\" \"p\" \"p\" \"p\" \"p\" \"p\" \"p\" \"p\" \"p\" \"p\" \"p\" \"p\" \"p\"\n [19] \"r\" \"e\" \"r\" \"r\" \"r\" \"p\" \"p\" \"p\" \"p\" \"p\" \"r\" \"e\" \"r\" \"d\" \"r\" \"r\" \"r\" \"r\"\n [37] \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"e\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\"\n [55] \"e\" \"r\" \"r\" \"r\" \"r\" \"e\" \"r\" \"r\" \"r\" \"r\" \"r\" \"e\" \"r\" \"r\" \"r\" \"e\" \"r\" \"r\"\n [73] \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\"\n [91] \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"p\" \"r\" \"r\" \"r\" \"p\" \"r\" \"r\" \"r\" \"c\" \"p\"\n[109] \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"d\" \"r\" \"r\" \"r\"\n[127] \"e\" \"r\" \"r\" \"p\" \"p\" \"r\" \"r\" \"p\" \"r\" \"p\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\"\n[145] \"r\" \"p\" \"p\" \"r\" \"r\" \"p\" \"r\" \"r\" \"p\" \"p\" \"r\" \"p\" \"r\" \"r\" \"p\" \"r\" \"r\" \"r\"\n[163] \"p\" \"r\" \"p\" \"r\" \"r\" \"r\" \"r\" \"p\" \"r\" \"p\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\"\n[181] \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\"\n[199] \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"r\" \"p\" \"p\" \"r\" \"d\" \"r\" \"r\" \"p\"\n[217] \"p\" \"r\" \"r\" \"r\" \"r\" \"d\" \"d\" \"r\" \"r\" \"r\" \"r\" \"p\" \"p\" \"p\" \"p\" \"p\" \"p\" \"p\"\n\nmpg |&gt;\n  mutate(fuel_type = if_else(\n    fl == \"p\",\n    \"petrol\",\n    \"alternative energy\"))\n\n# A tibble: 234 × 12\n   manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class\n   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;\n 1 audi         a4           1.8  1999     4 auto… f        18    29 p     comp…\n 2 audi         a4           1.8  1999     4 manu… f        21    29 p     comp…\n 3 audi         a4           2    2008     4 manu… f        20    31 p     comp…\n 4 audi         a4           2    2008     4 auto… f        21    30 p     comp…\n 5 audi         a4           2.8  1999     6 auto… f        16    26 p     comp…\n 6 audi         a4           2.8  1999     6 manu… f        18    26 p     comp…\n 7 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…\n 8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…\n 9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…\n10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…\n# ℹ 224 more rows\n# ℹ 1 more variable: fuel_type &lt;chr&gt;\n\n\n\nThe drv variable describes if the car has front drive (f), rear drive (r), or four wheel drive (4). Let’s make better labels for these values! Specifically, use the case_when() function to change the drv varible to have the following levels: front, rear, four wheel.\n\n\nmpg |&gt;\n  mutate(drv = case_when(\n    drv == \"f\" ~ \"front\",\n    drv == \"r\" ~ \"rear\",\n    drv == \"4\" ~ \"four wheel\"\n  ))\n\n# A tibble: 234 × 11\n   manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class\n   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;\n 1 audi         a4           1.8  1999     4 auto… front    18    29 p     comp…\n 2 audi         a4           1.8  1999     4 manu… front    21    29 p     comp…\n 3 audi         a4           2    2008     4 manu… front    20    31 p     comp…\n 4 audi         a4           2    2008     4 auto… front    21    30 p     comp…\n 5 audi         a4           2.8  1999     6 auto… front    16    26 p     comp…\n 6 audi         a4           2.8  1999     6 manu… front    18    26 p     comp…\n 7 audi         a4           3.1  2008     6 auto… front    18    27 p     comp…\n 8 audi         a4 quattro   1.8  1999     4 manu… four…    18    26 p     comp…\n 9 audi         a4 quattro   1.8  1999     4 auto… four…    16    25 p     comp…\n10 audi         a4 quattro   2    2008     4 manu… four…    20    28 p     comp…\n# ℹ 224 more rows\n\n\n(string split + remove extra “)” ) 13. The trans variable contains two pieces of information, (1) the transmission style (auto or manual) and the specific type of transmission (e.g., l5, m5). Using the str_split() function, create a new variable (trans_type) containing the specific type of transmission of each car. Once you’ve made this new variable, use the rename() function to change the name of the trans column to trans_style.\nHint: You will need to deal with the stray parenthesis!\n\nmpg |&gt; \n  mutate(\n    trans_split = str_split(trans, \"\\\\(\", n = 2),  \n    trans = map_chr(trans_split, 1),  \n    trans_type = map_chr(trans_split, ~str_remove(.[2], \"\\\\)\")) \n  ) |&gt;\n  select(-trans_split) |&gt;\n  rename(trans_style = trans)\n\n# A tibble: 234 × 12\n   manufacturer model      displ  year   cyl trans_style drv     cty   hwy fl   \n   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;       &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;\n 1 audi         a4           1.8  1999     4 auto        f        18    29 p    \n 2 audi         a4           1.8  1999     4 manual      f        21    29 p    \n 3 audi         a4           2    2008     4 manual      f        20    31 p    \n 4 audi         a4           2    2008     4 auto        f        21    30 p    \n 5 audi         a4           2.8  1999     6 auto        f        16    26 p    \n 6 audi         a4           2.8  1999     6 manual      f        18    26 p    \n 7 audi         a4           3.1  2008     6 auto        f        18    27 p    \n 8 audi         a4 quattro   1.8  1999     4 manual      4        18    26 p    \n 9 audi         a4 quattro   1.8  1999     4 auto        4        16    25 p    \n10 audi         a4 quattro   2    2008     4 manual      4        20    28 p    \n# ℹ 224 more rows\n# ℹ 2 more variables: class &lt;chr&gt;, trans_type &lt;chr&gt;"
+  },
+  {
+    "objectID": "Posts/05_04_25_Lab1/index.html#getting-to-know-your-classmates",
+    "href": "Posts/05_04_25_Lab1/index.html#getting-to-know-your-classmates",
+    "title": "Lab 1",
+    "section": "Getting to know your classmates",
+    "text": "Getting to know your classmates\n\nFind someone who took Stat 331 from a different professor than you. Compare your experiences. Tell me their name and professor. List one or two things that you think you learned more about, and one or two things that they learned more about.\n\nI talked to Lucas who took 331 with Dr.Lund. A major difference between our classes was that his class did not use markdown or quarto for their assignments. His class also focused more on regression and statistical analysis n r than data wrangling, visualization, and function writing.\n\nFind someone in the class who does not share your birth month. Tell me their name and birthday, and use R to find out how many days apart your birthdays are.\n\n\nlibrary(lubridate)\nstart_date &lt;- ymd(\"2024-08-30\")\nend_date &lt;- ymd(\"2024-09-22\")\n\nend_date - start_date\n\nTime difference of 23 days\n\n\nZach’s birthday is August 30th. Mine is September 22nd. There are 23 days between our birthdays."
   },
   {
     "objectID": "about.html",

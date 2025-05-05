@@ -1,0 +1,272 @@
+---
+title: "Lab 2"
+description: "Fixing Bad Graphics"
+author:
+  - name: Sydney Potkey
+    url: https://SydneyPotkey.github.io/
+date: 05-04-2025
+citation: 
+  url: https://SydneyPotkey.github.io/Posts/05_04_25_Lab2/ 
+image: "images/download.png"
+draft: false 
+---
+
+# Visualization 1
+
+```{r}
+#| label: read-in-wellcome-data
+#| message: false
+library(tidyverse)
+library(readxl)
+world_data <- read_excel("/Users/sydneypotkey/Desktop/wgm2018-dataset-crosstabs-all-countries.xlsx", sheet = 1)
+world_data_full <- read_excel("/Users/sydneypotkey/Desktop/wgm2018-dataset-crosstabs-all-countries.xlsx", sheet = 2)
+world_data <- read_excel("/Users/sydneypotkey/Desktop/wgm2018-dataset-crosstabs-all-countries.xlsx", sheet = 3)
+head(df)
+
+```
+## Filtering the Data
+```{r}
+#| message: false
+#| warning: false
+
+data_dictionary <- world_data |>
+  filter(`Variable Name` == "WP5") |>
+  mutate(code_list = str_split(`Variable Type & Codes*`, ",")) |>
+  select(code_list) |>                      
+  unnest(code_list) |>                       
+  mutate(code_list = str_trim(code_list)) |> 
+  separate(code_list, into = c("WP5", "country"), sep = "=") |>
+  mutate(WP5 = as.character(WP5))
+
+
+world_data_full <- world_data_full |> 
+  mutate(WP5 = as.character(WP5))
+
+  
+
+joined_data <- inner_join(world_data_full, data_dictionary, by = "WP5" )
+
+joined <- joined_data |>
+  select(country, Q25, Regions_Report)
+
+graph_data <- joined |> 
+  mutate(region = case_when(Regions_Report %in% c(9, 10, 11, 12)~"Asia", Regions_Report %in% c(1, 2, 4, 5)~"Sub-Saharan Africa", Regions_Report %in% c(6, 7, 8)~"Americas", Regions_Report %in% c(14, 15, 16, 17)~"Europe", Regions_Report == 18~"Australia & NZ", Regions_Report %in% c(3, 13)~"North Africa & Middle East")) |>
+  filter(!is.na(region)) |>
+  group_by(country, region) |> 
+  summarise(total_respondents = n(),
+    agree = sum(Q25 == 1, na.rm = TRUE),
+    percent_agree = 100 * agree / total_respondents
+  ) |> 
+  arrange(desc(percent_agree)) 
+
+science_percent <- joined_data |> 
+  group_by(country) |> 
+  summarise(
+    total_respondents = n(),
+    studied_science = sum(Q5C == 1, na.rm = TRUE),
+    percent_studied_science = 100 * studied_science / total_respondents
+  ) |> 
+  arrange(desc(percent_studied_science))
+
+  
+
+  
+
+```
+6. Improve the visualization above by either re-creating it with the issues you
+identified fixed OR by creating a new visualization that you believe tells the
+same story better.
+
+```{r}
+#| label: new-and-improved-visualization
+#| message: false
+#| warning: false
+
+library(scales)
+library(ggiraph)
+
+cbp2 <- c("#000000", "#E69F00", "#56B4E9", "#009E73",
+          "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+  
+
+plot <- ggplot(data = graph_data, aes(y = percent_agree/100, x = country, color = region, tooltip = country, data_id = country)) +
+  geom_point_interactive(size = 2) + 
+  facet_grid(~region, labeller = label_wrap_gen(width = 15)) +
+  labs(x = "", subtitle  = "Percent Who Believe Vaccines Are Safe", title = "Percent of Population That Believe Vaccinces Are Safe by Region", y = "") + 
+  theme_light()+ 
+  scale_color_manual(values = cbp2) +
+  scale_y_continuous(labels = label_percent()) +
+  theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.major.x = element_blank(),
+        legend.position = "none", 
+        plot.title = element_text(face = "bold")) 
+
+    
+  
+  geom_point_interactive(aes(x = wt, y = qsec, color = disp,
+    tooltip = carname, data_id = carname))
+  
+  girafe(ggobj = plot)
+  
+  
+ 
+
+```
+
+# Part Two: Broad Visualization Improvement
+
+The full Wellcome Global Monitor 2018 report can be found here: [https://wellcome.ac.uk/sites/default/files/wellcome-global-monitor-2018.pdf](https://wellcome.ac.uk/sites/default/files/wellcome-global-monitor-2018.pdf). 
+Surprisingly, the visualization above does not appear in the report despite the
+citation in the bottom corner of the image!
+
+# Visualization 2
+
+**For this second plot, you must select a plot that uses maps so you can demonstrate your proficiency with the `leaflet` package!**
+
+7. Select a data visualization in the report that you think could be improved. 
+Be sure to cite both the page number and figure title. Do your best to tell the
+story of this graph in words. That is, what is this graph telling you? What do
+you think the authors meant to convey with it?
+
+I chose the chloropleth graph from the first page titled Hindi belt scores low while south does better". This graph shows the female labor percentage in Indian states. They are trying to highlight stark differences in labor percentage based on the different states. 
+
+8. List the variables that appear to be displayed in this visualization.
+
+State and female labor percent
+
+9. Now that you're versed in the grammar of graphics (ggplot), list the
+aesthetics used and which variables are specified for each.
+
+This graph does not use gg plot.
+
+10. What type of graph would you call this?
+
+Chloropleth 
+
+11. List all of the problems or things you would improve about this graph. 
+
+The main problem is the legend. The scale used for the legen is not standard and does not make sense. It could also be misleading since each color gradient represents a different amount of change. ex. the first shade represents 4.1-15.4, a change of about 11 percentage point, but the second shade represents 15.5-19.9, only about 4 percentage points.
+
+12. Improve the visualization above by either re-creating it with the issues you identified fixed OR by creating a new visualization that you believe tells the same story better.
+
+```{r}
+#| label: second-improved-visualization
+#| warning: false
+
+
+library(leaflet)
+library(data.table)
+library(tidyverse)
+library(sf)
+library(RColorBrewer)
+library(rnaturalearth)
+library(rnaturalearthhires) 
+
+
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+science_percent <- science_percent |> 
+  mutate(country = tolower(trimws(country)))
+
+world <- world |> 
+  mutate(country = tolower(trimws(name)))
+
+map_data <- left_join(world, science_percent, by = "country") |> 
+  filter(!is.na(percent_studied_science))
+
+
+pal <- colorNumeric("Greens", domain = map_data$percent_science)
+
+
+leaflet(map_data) |> 
+  addProviderTiles("CartoDB.Voyager") |> 
+  addPolygons(fillColor = ~pal(percent_studied_science),
+    color = "white",
+    weight = 0.5,
+    fillOpacity = 0.8,
+    label = ~paste0(name, ": ", round(percent_studied_science, 1), "% studied science"),
+    highlightOptions = highlightOptions(
+      weight = 2,
+      bringToFront = TRUE)) |> 
+  addLegend(pal = pal,
+    values = ~percent_studied_science,
+    title = "% Studied Science in Grad School",
+    position = "bottomright" )
+
+
+
+
+
+ 
+```
+
+# Visualization 3
+
+**For this third plot, you must use one of the other `ggplot2` extension packages mentioned this week (e.g., `gganimate`, `plotly`, `patchwork`, `cowplot`).**
+ 
+13. Select a data visualization in the report that you think could be improved. 
+Be sure to cite both the page number and figure title. Do your best to tell the
+story of this graph in words. That is, what is this graph telling you? What do
+you think the authors meant to convey with it?
+
+I used the visualization titled "Average Female height per Country. This graph shows the differences in height for multiple countries across different continents. It uses female figures to display that these are the heights of female residents specifically. 
+
+14. List the variables that appear to be displayed in this visualization.
+
+Country and height
+
+15. Now that you're versed in the grammar of graphics (ggplot), list the
+aesthetics used and which variables are specified for each.
+
+The aesthetics of this graph are y = height, fill = country, x = country
+
+16. What type of graph would you call this?
+
+A bar chart
+
+17. List all of the problems or things you would improve about this graph.  
+
+This graph is very misleading since it uses figures as the bars i the bar chart. The figures are scaled so instead of just showing differences in height they shrink completely. Also the title could be improved and the y axis needs to begin at 0. 
+
+
+18. Improve the visualization above by either re-creating it with the issues you identified fixed OR by creating a new visualization that you believe tells the same story better.
+
+```{r}
+#| label: third-improved-visualization
+#| warning: false
+#| message: false
+
+library(cowplot)
+
+df <- data.frame(country = c("Latvia", "Australia", "Scotland", "Peru", "South Africa", "India"), Height = c(65, 64, 64, 64, 62, 60))
+
+pink_palette <- c("#FEC5E5", "#F79AC0", "#FD5DA8", "#FF1480", "#F25278", "#DB7093")
+
+feet <- function(x) {
+  feet <- floor(x / 12)
+  inches <- round(x %% 12)
+  paste0(feet, "'", inches, "\"")
+}
+
+
+
+ggplot(data = df, aes( x = country, y = Height, fill = country)) + 
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = pink_palette) + 
+  theme_minimal_vgrid() +
+  scale_y_continuous(labels = feet)  +
+  theme(panel.grid.major.y = element_blank(),
+        legend.position = "none",
+        plot.title = element_text(face = "bold")) + 
+  labs(x = "", y = "Height (Feet)", title = "Average Female Height by Country") + 
+  coord_flip() + 
+  geom_text(aes(label = feet(Height)), hjust = 1.5, size = 4, color = "white")
+
+
+
+
+```
