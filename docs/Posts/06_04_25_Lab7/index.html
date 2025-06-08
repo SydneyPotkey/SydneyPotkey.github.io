@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Sydney Potkey">
+<meta name="dcterms.date" content="2025-06-07">
+<meta name="description" content="APIs">
+
+<title>Lab 7 – Sydney Potkey</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-1e438c382a17f6d88d3993662a872df6.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a37c72dd2dbac68997fcdc15a3622e78.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-6bdd2aebeb936dcddaa5f935a5de481c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-ccd81253fefb92e9cd3f9eb5b5d87b54.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-6bdd2aebeb936dcddaa5f935a5de481c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="../../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="../../site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+<script src="../../site_libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="../../site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+<script src="../../site_libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="../../site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="../../site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="../../site_libs/leaflet-binding-2.2.2/leaflet.js"></script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    window.setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      window.setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    window.hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(darkModeDefault) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const darkModeDefault = false;
+    document.querySelector('link.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !window.hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+    };
+    // Switch to dark mode if need be
+    if (window.hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Sydney Potkey</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../Blog.html"> 
+<span class="menu-text">My Blog</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Lab 7</h1>
+                  <div>
+        <div class="description">
+          APIs
+        </div>
+      </div>
+                </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p><a href="https://SydneyPotkey.github.io/">Sydney Potkey</a> </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">June 7, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#set-up" id="toc-set-up" class="nav-link active" data-scroll-target="#set-up">Set up</a></li>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#question-2-us-state-capitols" id="toc-question-2-us-state-capitols" class="nav-link" data-scroll-target="#question-2-us-state-capitols">Question 2 US State Capitols</a></li>
+  <li><a href="#question-3-icon" id="toc-question-3-icon" class="nav-link" data-scroll-target="#question-3-icon">Question 3 Icon</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+
+<section id="set-up" class="level1">
+<h1>Set up</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(repurrrsive)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyjson)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(htmltools)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="question-1" class="level1">
+<h1>Question 1</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in capital lat and long</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>capitals <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"https://people.sc.fsu.edu/~jburkardt/datasets/states/state_capitals_ll.txt"</span>, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"State"</span>, <span class="st">"Lat"</span>, <span class="st">"Long"</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># read in capital names</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>capital_names <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"https://people.sc.fsu.edu/~jburkardt/datasets/states/state_capitals_name.txt"</span>, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"State"</span>, <span class="st">"Capital"</span>))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># merge df's</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>capitals <span class="ot">&lt;-</span> capitals <span class="sc">|&gt;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(capital_names, <span class="at">by =</span> <span class="st">"State"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># function for getting pass times</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>pass_times <span class="ot">&lt;-</span> <span class="cf">function</span>(capitals_df) {</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  get_passes <span class="ot">&lt;-</span> <span class="cf">function</span>(state, capital, lat, lon) {</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    res <span class="ot">&lt;-</span> <span class="fu">GET</span>(</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">glue</span>(<span class="st">"https://api.g7vrd.co.uk/v1/satellite-passes/25544/{lat}/{lon}.json"</span>),</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">query =</span> <span class="fu">list</span>(<span class="at">hours =</span> <span class="dv">72</span>, <span class="at">minelevation =</span> <span class="dv">30</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    data <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="fu">rawToChar</span>(res<span class="sc">$</span>content))</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># get first 3 pass times</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    passes <span class="ot">&lt;-</span> data<span class="sc">$</span>passes <span class="sc">%&gt;%</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">head</span>(<span class="dv">3</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># create tibble </span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tibble</span>(</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">State =</span> state,</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">Capital =</span> capital,</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">Latitude =</span> lat,</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">Longitude =</span> lon,</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">PassTime =</span> <span class="fu">ymd_hms</span>(<span class="fu">str_remove</span>(<span class="fu">as.character</span>(passes<span class="sc">$</span>start), <span class="st">"Z"</span>)),</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>      <span class="at">PassNumber =</span> <span class="fu">seq.int</span>(<span class="fu">nrow</span>(passes))</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  <span class="co"># apply function to capitals df</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">pmap_dfr</span>(</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(capitals_df<span class="sc">$</span>State, capitals_df<span class="sc">$</span>Capital, capitals_df<span class="sc">$</span>Lat, capitals_df<span class="sc">$</span>Long),</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    get_passes</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="co"># create df</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>ISS_data <span class="ot">&lt;-</span> <span class="fu">pass_times</span>(capitals)</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="co"># reorder df</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>ISS_data <span class="ot">&lt;-</span> ISS_data <span class="sc">|&gt;</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(State, PassTime)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="co">#pivoting on pass times to create one row per capital</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>ISS_data <span class="ot">=</span> ISS_data <span class="sc">|&gt;</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> PassNumber, <span class="at">values_from =</span> PassTime, <span class="at">names_prefix =</span> <span class="st">"Pass"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="question-2-us-state-capitols" class="level1">
+<h1>Question 2 US State Capitols</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(<span class="at">data =</span> capitals) <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setView</span>(<span class="at">lng =</span> <span class="sc">-</span><span class="fl">98.5795</span>, <span class="at">lat =</span> <span class="fl">39.8283</span>, <span class="at">zoom =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addMarkers</span>(</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">lng =</span> <span class="sc">~</span>Long,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">lat =</span> <span class="sc">~</span>Lat,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">popup =</span> <span class="sc">~</span><span class="fu">paste0</span>(Capital, <span class="st">", "</span>, State)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-a88821e582bf6c1d7a30" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-a88821e582bf6c1d7a30">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[[32.361538,58.301935,33.448457,34.736009,38.555605,39.7391667,41.767,38.913,39.161921,30.4518,33.76,21.30895,43.613739,39.78325,39.790942,41.590939,39.04,38.197274,30.45809,44.323535,38.972945,42.2352,42.7335,44.95,32.32,38.572954,46.595805,40.809868,39.160949,43.220093,40.221741,35.667231,42.659829,35.771,48.813343,39.962245,35.482309,44.931109,40.269789,18.2208,41.82355,34,44.367966,36.165,30.266667,38.913,40.7547,44.26639,37.54,47.042418,38.349497,43.074722,41.145548],[-86.279118,-134.41974,-112.073844,-92.33112199999999,-121.468926,-104.984167,-72.67700000000001,-77.01300000000001,-75.52675499999999,-84.27276999999999,-84.39,-157.826182,-116.237651,-89.650373,-86.147685,-93.62086600000001,-95.69,-84.86311000000001,-91.14022900000001,-69.765261,-76.50115700000001,-71.0275,-84.5467,-93.09399999999999,-90.20699999999999,-92.189283,-112.027031,-96.67534499999999,-119.753877,-71.549127,-74.75613800000001,-105.964575,-73.781339,-78.63800000000001,-100.779004,-83.000647,-97.534994,-123.029159,-76.875613,-66.59010000000001,-71.422132,-81.035,-100.336378,-86.78400000000001,-97.75,77.01300000000001,-111.892622,-72.57194,-77.45999999999999,-122.893077,-81.63329400000001,-89.384444,-104.802042],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Montgomery, AL","Juneau, AK","Phoenix, AZ","Little Rock, AR","Sacramento, CA","Denver, CO","Hartford, CT","District of Columbia, DC","Dover, DE","Tallahassee, FL","Atlanta, GA","Honolulu, HI","Boise, ID","Springfield, IL","Indianapolis, IN","Des Moines, IA","Topeka, KS","Frankfort, KY","Baton Rouge, LA","Augusta, ME","Annapolis, MD","Boston, MA","Lansing, MI","St Paul, MN","Jackson, MS","Jefferson City, MO","Helena, MT","Lincoln, NE","Carson City, NV","Concord, NH","Trenton, NJ","Santa Fe, NM","Albany, NY","Raleigh, NC","Bismarck, ND","Columbus, OH","Oklahoma City, OK","Salem, OR","Harrisburg, PA","San Juan, PR","Providence, RI","Columbia, SC","Pierre, SD","Nashville, TN","Austin, TX","District of Columbia, US","Salt Lake City, UT","Montpelier, VT","Richmond, VA","Olympia, WA","Charleston, WV","Madison, WI","Cheyenne, WY"],null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[39.8283,-98.5795],3,[]],"limits":{"lat":[18.2208,58.301935],"lng":[-157.826182,77.01300000000001]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="question-3-icon" class="level1">
+<h1>Question 3 Icon</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>icon <span class="ot">&lt;-</span> <span class="fu">makeIcon</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">iconUrl =</span> <span class="st">"https://cdn1.iconfinder.com/data/icons/space-butterscotch-vol-2/256/Orbital_Station-1024.png"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">iconWidth =</span> <span class="dv">20</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">iconHeight =</span> <span class="dv">20</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(<span class="at">data =</span> capitals) <span class="sc">|&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setView</span>(<span class="at">lng =</span> <span class="sc">-</span><span class="fl">98.5795</span>, <span class="at">lat =</span> <span class="fl">39.8283</span>, <span class="at">zoom =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addMarkers</span>(</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">lng =</span> <span class="sc">~</span>Long,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">lat =</span> <span class="sc">~</span>Lat,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">popup =</span> <span class="sc">~</span><span class="fu">paste0</span>(Capital, <span class="st">", "</span>, State),</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">icon =</span> icon</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-8951c7e01c8f19fba6f4" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-8951c7e01c8f19fba6f4">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[[32.361538,58.301935,33.448457,34.736009,38.555605,39.7391667,41.767,38.913,39.161921,30.4518,33.76,21.30895,43.613739,39.78325,39.790942,41.590939,39.04,38.197274,30.45809,44.323535,38.972945,42.2352,42.7335,44.95,32.32,38.572954,46.595805,40.809868,39.160949,43.220093,40.221741,35.667231,42.659829,35.771,48.813343,39.962245,35.482309,44.931109,40.269789,18.2208,41.82355,34,44.367966,36.165,30.266667,38.913,40.7547,44.26639,37.54,47.042418,38.349497,43.074722,41.145548],[-86.279118,-134.41974,-112.073844,-92.33112199999999,-121.468926,-104.984167,-72.67700000000001,-77.01300000000001,-75.52675499999999,-84.27276999999999,-84.39,-157.826182,-116.237651,-89.650373,-86.147685,-93.62086600000001,-95.69,-84.86311000000001,-91.14022900000001,-69.765261,-76.50115700000001,-71.0275,-84.5467,-93.09399999999999,-90.20699999999999,-92.189283,-112.027031,-96.67534499999999,-119.753877,-71.549127,-74.75613800000001,-105.964575,-73.781339,-78.63800000000001,-100.779004,-83.000647,-97.534994,-123.029159,-76.875613,-66.59010000000001,-71.422132,-81.035,-100.336378,-86.78400000000001,-97.75,77.01300000000001,-111.892622,-72.57194,-77.45999999999999,-122.893077,-81.63329400000001,-89.384444,-104.802042],{"iconUrl":{"data":"https://cdn1.iconfinder.com/data/icons/space-butterscotch-vol-2/256/Orbital_Station-1024.png","index":0},"iconWidth":20,"iconHeight":20},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Montgomery, AL","Juneau, AK","Phoenix, AZ","Little Rock, AR","Sacramento, CA","Denver, CO","Hartford, CT","District of Columbia, DC","Dover, DE","Tallahassee, FL","Atlanta, GA","Honolulu, HI","Boise, ID","Springfield, IL","Indianapolis, IN","Des Moines, IA","Topeka, KS","Frankfort, KY","Baton Rouge, LA","Augusta, ME","Annapolis, MD","Boston, MA","Lansing, MI","St Paul, MN","Jackson, MS","Jefferson City, MO","Helena, MT","Lincoln, NE","Carson City, NV","Concord, NH","Trenton, NJ","Santa Fe, NM","Albany, NY","Raleigh, NC","Bismarck, ND","Columbus, OH","Oklahoma City, OK","Salem, OR","Harrisburg, PA","San Juan, PR","Providence, RI","Columbia, SC","Pierre, SD","Nashville, TN","Austin, TX","District of Columbia, US","Salt Lake City, UT","Montpelier, VT","Richmond, VA","Olympia, WA","Charleston, WV","Madison, WI","Cheyenne, WY"],null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[39.8283,-98.5795],3,[]],"limits":{"lat":[18.2208,58.301935],"lng":[-157.826182,77.01300000000001]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="question-4" class="level1">
+<h1>Question 4</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#formatting popups and labels as HTML for line breaks</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>popups <span class="ot">&lt;-</span> <span class="fu">paste0</span>(ISS_data<span class="sc">$</span>State, <span class="st">", "</span>, ISS_data<span class="sc">$</span>Capital, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Next 3 Passes: &lt;br&gt;"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                ISS_data<span class="sc">$</span>Pass1, <span class="st">" UTC"</span>, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                   ISS_data<span class="sc">$</span>Pass2, <span class="st">" UTC"</span>,  <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                   ISS_data<span class="sc">$</span>Pass3, <span class="st">" UTC"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(htmltools<span class="sc">::</span>HTML)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>labels <span class="ot">&lt;-</span> <span class="fu">paste0</span>(ISS_data<span class="sc">$</span>State, <span class="st">", "</span>, ISS_data<span class="sc">$</span>Capital, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Next Pass: &lt;br&gt;"</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                ISS_data<span class="sc">$</span>Pass1, <span class="st">" UTC"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(htmltools<span class="sc">::</span>HTML)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(<span class="at">data =</span> ISS_data) <span class="sc">|&gt;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setView</span>(<span class="at">lng =</span> <span class="sc">-</span><span class="fl">98.5795</span>, <span class="at">lat =</span> <span class="fl">39.8283</span>, <span class="at">zoom =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addMarkers</span>(</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">lng =</span> <span class="sc">~</span>Longitude,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">lat =</span> <span class="sc">~</span>Latitude,</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="sc">~</span>labels,</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">popup =</span> <span class="sc">~</span>popups,</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">icon =</span> icon</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-c9a1efdcf162151ce279" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-c9a1efdcf162151ce279">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[[32.361538,34.736009,33.448457,38.555605,39.7391667,41.767,38.913,39.161921,30.4518,33.76,21.30895,41.590939,43.613739,39.78325,39.790942,39.04,38.197274,30.45809,42.2352,38.972945,44.323535,42.7335,44.95,38.572954,32.32,46.595805,35.771,48.813343,40.809868,43.220093,40.221741,35.667231,39.160949,42.659829,39.962245,35.482309,44.931109,40.269789,18.2208,41.82355,34,44.367966,36.165,30.266667,38.913,40.7547,37.54,44.26639,47.042418,43.074722,38.349497,41.145548],[-86.279118,-92.33112199999999,-112.073844,-121.468926,-104.984167,-72.67700000000001,-77.01300000000001,-75.52675499999999,-84.27276999999999,-84.39,-157.826182,-93.62086600000001,-116.237651,-89.650373,-86.147685,-95.69,-84.86311000000001,-91.14022900000001,-71.0275,-76.50115700000001,-69.765261,-84.5467,-93.09399999999999,-92.189283,-90.20699999999999,-112.027031,-78.63800000000001,-100.779004,-96.67534499999999,-71.549127,-74.75613800000001,-105.964575,-119.753877,-73.781339,-83.000647,-97.534994,-123.029159,-76.875613,-66.59010000000001,-71.422132,-81.035,-100.336378,-86.78400000000001,-97.75,77.01300000000001,-111.892622,-77.45999999999999,-72.57194,-122.893077,-89.384444,-81.63329400000001,-104.802042],{"iconUrl":{"data":"https://cdn1.iconfinder.com/data/icons/space-butterscotch-vol-2/256/Orbital_Station-1024.png","index":0},"iconWidth":20,"iconHeight":20},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["AL, Montgomery<br>Next 3 Passes: <br>2025-06-08 13:31:44.306 UTC<br>2025-06-08 21:40:44.306 UTC<br>2025-06-09 20:52:19.306 UTC","AR, Little Rock<br>Next 3 Passes: <br>2025-06-08 15:08:00.008 UTC<br>2025-06-08 21:39:20.008 UTC<br>2025-06-09 14:19:20.008 UTC","AZ, Phoenix<br>Next 3 Passes: <br>2025-06-08 15:04:34.776 UTC<br>2025-06-08 23:12:59.776 UTC<br>2025-06-09 15:52:44.776 UTC","CA, Sacramento<br>Next 3 Passes: <br>2025-06-08 16:40:25.236 UTC<br>2025-06-08 23:10:35.236 UTC<br>2025-06-09 15:52:05.236 UTC","CO, Denver<br>Next 3 Passes: <br>2025-06-08 15:06:50.44 UTC<br>2025-06-08 21:36:25.44 UTC<br>2025-06-09 15:54:55.44 UTC","CT, Hartford<br>Next 3 Passes: <br>2025-06-08 13:35:30.642 UTC<br>2025-06-08 20:04:40.642 UTC<br>2025-06-09 12:47:20.642 UTC","DC, District of Columbia<br>Next 3 Passes: <br>2025-06-08 13:34:20.847 UTC<br>2025-06-08 20:04:25.847 UTC<br>2025-06-09 12:46:10.847 UTC","DE, Dover<br>Next 3 Passes: <br>2025-06-08 13:34:36.072 UTC<br>2025-06-08 20:04:36.072 UTC<br>2025-06-09 12:46:26.072 UTC","FL, Tallahassee<br>Next 3 Passes: <br>2025-06-08 13:31:36.278 UTC<br>2025-06-08 21:41:26.278 UTC<br>2025-06-09 12:43:21.278 UTC","GA, Atlanta<br>Next 3 Passes: <br>2025-06-08 13:32:16.506 UTC<br>2025-06-08 21:40:51.506 UTC<br>2025-06-09 20:52:21.506 UTC","HI, Honolulu<br>Next 3 Passes: <br>2025-06-08 03:09:51.708 UTC<br>2025-06-08 18:07:56.708 UTC<br>2025-06-09 17:19:26.708 UTC","IA, Des Moines<br>Next 3 Passes: <br>2025-06-08 15:08:42.541 UTC<br>2025-06-08 21:37:57.541 UTC<br>2025-06-09 14:20:27.541 UTC","ID, Boise<br>Next 3 Passes: <br>2025-06-08 16:42:01.911 UTC<br>2025-06-08 21:33:56.911 UTC<br>2025-06-08 23:10:41.911 UTC","IL, Springfield<br>Next 3 Passes: <br>2025-06-08 15:09:07.127 UTC<br>2025-06-08 21:38:57.127 UTC<br>2025-06-09 14:20:37.127 UTC","IN, Indianapolis<br>Next 3 Passes: <br>2025-06-08 15:09:47.337 UTC<br>2025-06-08 21:39:32.337 UTC<br>2025-06-09 14:21:12.337 UTC","KS, Topeka<br>Next 3 Passes: <br>2025-06-08 15:07:57.744 UTC<br>2025-06-08 21:38:02.744 UTC<br>2025-06-09 14:19:37.744 UTC","KY, Frankfort<br>Next 3 Passes: <br>2025-06-08 21:40:02.951 UTC<br>2025-06-09 14:21:12.951 UTC<br>2025-06-09 20:51:27.951 UTC","LA, Baton Rouge<br>Next 3 Passes: <br>2025-06-08 13:30:43.207 UTC<br>2025-06-08 21:40:23.207 UTC<br>2025-06-10 13:30:18.207 UTC","MA, Boston<br>Next 3 Passes: <br>2025-06-08 13:35:53.823 UTC<br>2025-06-08 20:04:53.823 UTC<br>2025-06-09 12:47:38.823 UTC","MD, Annapolis<br>Next 3 Passes: <br>2025-06-08 13:34:28.62 UTC<br>2025-06-08 20:04:28.62 UTC<br>2025-06-09 12:46:13.62 UTC","ME, Augusta<br>Next 3 Passes: <br>2025-06-08 13:36:23.413 UTC<br>2025-06-08 15:13:23.413 UTC<br>2025-06-08 18:27:58.413 UTC","MI, Lansing<br>Next 3 Passes: <br>2025-06-08 15:10:24.031 UTC<br>2025-06-08 20:02:34.031 UTC<br>2025-06-09 14:21:54.031 UTC","MN, St Paul<br>Next 3 Passes: <br>2025-06-08 15:09:24.242 UTC<br>2025-06-08 16:46:14.242 UTC<br>2025-06-08 20:00:49.242 UTC","MO, Jefferson City<br>Next 3 Passes: <br>2025-06-08 15:08:29.709 UTC<br>2025-06-08 21:38:39.709 UTC<br>2025-06-09 14:19:59.709 UTC","MS, Jackson<br>Next 3 Passes: <br>2025-06-08 13:31:14.484 UTC<br>2025-06-08 21:40:09.484 UTC<br>2025-06-09 14:19:29.484 UTC","MT, Helena<br>Next 3 Passes: <br>2025-06-08 16:43:09.933 UTC<br>2025-06-08 18:19:59.933 UTC<br>2025-06-08 19:57:19.933 UTC","NC, Raleigh<br>Next 3 Passes: <br>2025-06-08 13:33:31.483 UTC<br>2025-06-09 12:45:16.483 UTC<br>2025-06-09 20:52:56.483 UTC","ND, Bismarck<br>Next 3 Passes: <br>2025-06-08 16:45:11.705 UTC<br>2025-06-08 18:22:06.705 UTC<br>2025-06-08 19:59:06.705 UTC","NE, Lincoln<br>Next 3 Passes: <br>2025-06-08 15:08:10.144 UTC<br>2025-06-08 21:37:35.144 UTC<br>2025-06-09 14:19:55.144 UTC","NH, Concord<br>Next 3 Passes: <br>2025-06-08 13:36:00.592 UTC<br>2025-06-08 18:27:50.592 UTC<br>2025-06-08 20:04:40.592 UTC","NJ, Trenton<br>Next 3 Passes: <br>2025-06-08 13:34:55.821 UTC<br>2025-06-08 20:04:30.821 UTC<br>2025-06-09 12:46:45.821 UTC","NM, Santa Fe<br>Next 3 Passes: <br>2025-06-08 15:05:46.027 UTC<br>2025-06-08 23:13:41.027 UTC<br>2025-06-09 22:25:11.027 UTC","NV, Carson City<br>Next 3 Passes: <br>2025-06-08 16:40:45.361 UTC<br>2025-06-08 23:10:45.361 UTC<br>2025-06-09 15:52:25.361 UTC","NY, Albany<br>Next 3 Passes: <br>2025-06-08 13:35:31.257 UTC<br>2025-06-08 15:12:31.257 UTC<br>2025-06-08 20:04:21.257 UTC","OH, Columbus<br>Next 3 Passes: <br>2025-06-08 15:10:26.938 UTC<br>2025-06-08 20:03:16.938 UTC<br>2025-06-09 14:21:46.938 UTC","OK, Oklahoma City<br>Next 3 Passes: <br>2025-06-08 15:07:07.16 UTC<br>2025-06-08 21:38:22.16 UTC<br>2025-06-09 14:18:37.16 UTC","OR, Salem<br>Next 3 Passes: <br>2025-06-08 18:17:52.394 UTC<br>2025-06-08 21:32:32.394 UTC<br>2025-06-08 23:09:22.394 UTC","PA, Harrisburg<br>Next 3 Passes: <br>2025-06-08 13:34:37.629 UTC<br>2025-06-08 20:04:12.629 UTC<br>2025-06-09 14:23:02.629 UTC","PR, San Juan<br>Next 3 Passes: <br>2025-06-08 11:55:27.843 UTC<br>2025-06-08 21:46:52.843 UTC<br>2025-06-09 11:06:57.843 UTC","RI, Providence<br>Next 3 Passes: <br>2025-06-08 13:35:43.048 UTC<br>2025-06-08 20:04:53.048 UTC<br>2025-06-09 12:47:28.048 UTC","SC, Columbia<br>Next 3 Passes: <br>2025-06-08 13:32:48.271 UTC<br>2025-06-08 21:41:23.271 UTC<br>2025-06-09 12:44:33.271 UTC","SD, Pierre<br>Next 3 Passes: <br>2025-06-08 16:44:48.472 UTC<br>2025-06-08 19:59:38.472 UTC<br>2025-06-08 21:36:28.472 UTC","TN, Nashville<br>Next 3 Passes: <br>2025-06-08 13:32:33.69 UTC<br>2025-06-08 21:39:58.69 UTC<br>2025-06-09 14:20:38.69 UTC","TX, Austin<br>Next 3 Passes: <br>2025-06-09 14:17:38.911 UTC<br>2025-06-09 22:27:33.911 UTC<br>2025-06-10 13:29:13.911 UTC","US, District of Columbia<br>Next 3 Passes: <br>2025-06-08 04:19:29.139 UTC<br>2025-06-08 10:49:29.139 UTC<br>2025-06-09 03:30:54.139 UTC","UT, Salt Lake City<br>Next 3 Passes: <br>2025-06-08 16:42:19.347 UTC<br>2025-06-08 21:35:04.347 UTC<br>2025-06-08 23:11:54.347 UTC","VA, Richmond<br>Next 3 Passes: <br>2025-06-08 13:33:59.799 UTC<br>2025-06-08 20:04:34.799 UTC<br>2025-06-09 12:45:49.799 UTC","VT, Montpelier<br>Next 3 Passes: <br>2025-06-08 13:36:04.574 UTC<br>2025-06-08 15:12:49.574 UTC<br>2025-06-08 18:27:34.574 UTC","WA, Olympia<br>Next 3 Passes: <br>2025-06-08 18:18:05.023 UTC<br>2025-06-08 19:55:15.023 UTC<br>2025-06-08 21:32:20.023 UTC","WI, Madison<br>Next 3 Passes: <br>2025-06-08 15:09:40.48 UTC<br>2025-06-08 20:01:40.48 UTC<br>2025-06-09 14:21:15.48 UTC","WV, Charleston<br>Next 3 Passes: <br>2025-06-08 13:33:40.253 UTC<br>2025-06-08 20:03:45.253 UTC<br>2025-06-09 14:21:55.253 UTC","WY, Cheyenne<br>Next 3 Passes: <br>2025-06-08 16:43:45.709 UTC<br>2025-06-08 21:36:10.709 UTC<br>2025-06-09 15:55:05.709 UTC"],null,null,null,["AL, Montgomery<br>Next Pass: <br>2025-06-08 13:31:44.306 UTC","AR, Little Rock<br>Next Pass: <br>2025-06-08 15:08:00.008 UTC","AZ, Phoenix<br>Next Pass: <br>2025-06-08 15:04:34.776 UTC","CA, Sacramento<br>Next Pass: <br>2025-06-08 16:40:25.236 UTC","CO, Denver<br>Next Pass: <br>2025-06-08 15:06:50.44 UTC","CT, Hartford<br>Next Pass: <br>2025-06-08 13:35:30.642 UTC","DC, District of Columbia<br>Next Pass: <br>2025-06-08 13:34:20.847 UTC","DE, Dover<br>Next Pass: <br>2025-06-08 13:34:36.072 UTC","FL, Tallahassee<br>Next Pass: <br>2025-06-08 13:31:36.278 UTC","GA, Atlanta<br>Next Pass: <br>2025-06-08 13:32:16.506 UTC","HI, Honolulu<br>Next Pass: <br>2025-06-08 03:09:51.708 UTC","IA, Des Moines<br>Next Pass: <br>2025-06-08 15:08:42.541 UTC","ID, Boise<br>Next Pass: <br>2025-06-08 16:42:01.911 UTC","IL, Springfield<br>Next Pass: <br>2025-06-08 15:09:07.127 UTC","IN, Indianapolis<br>Next Pass: <br>2025-06-08 15:09:47.337 UTC","KS, Topeka<br>Next Pass: <br>2025-06-08 15:07:57.744 UTC","KY, Frankfort<br>Next Pass: <br>2025-06-08 21:40:02.951 UTC","LA, Baton Rouge<br>Next Pass: <br>2025-06-08 13:30:43.207 UTC","MA, Boston<br>Next Pass: <br>2025-06-08 13:35:53.823 UTC","MD, Annapolis<br>Next Pass: <br>2025-06-08 13:34:28.62 UTC","ME, Augusta<br>Next Pass: <br>2025-06-08 13:36:23.413 UTC","MI, Lansing<br>Next Pass: <br>2025-06-08 15:10:24.031 UTC","MN, St Paul<br>Next Pass: <br>2025-06-08 15:09:24.242 UTC","MO, Jefferson City<br>Next Pass: <br>2025-06-08 15:08:29.709 UTC","MS, Jackson<br>Next Pass: <br>2025-06-08 13:31:14.484 UTC","MT, Helena<br>Next Pass: <br>2025-06-08 16:43:09.933 UTC","NC, Raleigh<br>Next Pass: <br>2025-06-08 13:33:31.483 UTC","ND, Bismarck<br>Next Pass: <br>2025-06-08 16:45:11.705 UTC","NE, Lincoln<br>Next Pass: <br>2025-06-08 15:08:10.144 UTC","NH, Concord<br>Next Pass: <br>2025-06-08 13:36:00.592 UTC","NJ, Trenton<br>Next Pass: <br>2025-06-08 13:34:55.821 UTC","NM, Santa Fe<br>Next Pass: <br>2025-06-08 15:05:46.027 UTC","NV, Carson City<br>Next Pass: <br>2025-06-08 16:40:45.361 UTC","NY, Albany<br>Next Pass: <br>2025-06-08 13:35:31.257 UTC","OH, Columbus<br>Next Pass: <br>2025-06-08 15:10:26.938 UTC","OK, Oklahoma City<br>Next Pass: <br>2025-06-08 15:07:07.16 UTC","OR, Salem<br>Next Pass: <br>2025-06-08 18:17:52.394 UTC","PA, Harrisburg<br>Next Pass: <br>2025-06-08 13:34:37.629 UTC","PR, San Juan<br>Next Pass: <br>2025-06-08 11:55:27.843 UTC","RI, Providence<br>Next Pass: <br>2025-06-08 13:35:43.048 UTC","SC, Columbia<br>Next Pass: <br>2025-06-08 13:32:48.271 UTC","SD, Pierre<br>Next Pass: <br>2025-06-08 16:44:48.472 UTC","TN, Nashville<br>Next Pass: <br>2025-06-08 13:32:33.69 UTC","TX, Austin<br>Next Pass: <br>2025-06-09 14:17:38.911 UTC","US, District of Columbia<br>Next Pass: <br>2025-06-08 04:19:29.139 UTC","UT, Salt Lake City<br>Next Pass: <br>2025-06-08 16:42:19.347 UTC","VA, Richmond<br>Next Pass: <br>2025-06-08 13:33:59.799 UTC","VT, Montpelier<br>Next Pass: <br>2025-06-08 13:36:04.574 UTC","WA, Olympia<br>Next Pass: <br>2025-06-08 18:18:05.023 UTC","WI, Madison<br>Next Pass: <br>2025-06-08 15:09:40.48 UTC","WV, Charleston<br>Next Pass: <br>2025-06-08 13:33:40.253 UTC","WY, Cheyenne<br>Next Pass: <br>2025-06-08 16:43:45.709 UTC"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[39.8283,-98.5795],3,[]],"limits":{"lat":[18.2208,48.813343],"lng":[-157.826182,77.01300000000001]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="question-5" class="level1">
+<h1>Question 5</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>east_west <span class="ot">&lt;-</span> ISS_data <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Pass1)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(<span class="at">data =</span> ISS_data) <span class="sc">|&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setView</span>(<span class="at">lng =</span> <span class="sc">-</span><span class="fl">98.5795</span>, <span class="at">lat =</span> <span class="fl">39.8283</span>, <span class="at">zoom =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addMarkers</span>(</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">lng =</span> <span class="sc">~</span>Longitude,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">lat =</span> <span class="sc">~</span>Latitude,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="sc">~</span>labels,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">popup =</span> <span class="sc">~</span>popups,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">icon =</span> icon</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addPolylines</span>(<span class="at">data =</span> east_west, <span class="at">lat =</span> <span class="sc">~</span>Latitude,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>               <span class="at">lng =</span> <span class="sc">~</span>Longitude,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"red"</span>,</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>               <span class="at">weight =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-5b2202c3ba4e5857aeb1" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-5b2202c3ba4e5857aeb1">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[[32.361538,34.736009,33.448457,38.555605,39.7391667,41.767,38.913,39.161921,30.4518,33.76,21.30895,41.590939,43.613739,39.78325,39.790942,39.04,38.197274,30.45809,42.2352,38.972945,44.323535,42.7335,44.95,38.572954,32.32,46.595805,35.771,48.813343,40.809868,43.220093,40.221741,35.667231,39.160949,42.659829,39.962245,35.482309,44.931109,40.269789,18.2208,41.82355,34,44.367966,36.165,30.266667,38.913,40.7547,37.54,44.26639,47.042418,43.074722,38.349497,41.145548],[-86.279118,-92.33112199999999,-112.073844,-121.468926,-104.984167,-72.67700000000001,-77.01300000000001,-75.52675499999999,-84.27276999999999,-84.39,-157.826182,-93.62086600000001,-116.237651,-89.650373,-86.147685,-95.69,-84.86311000000001,-91.14022900000001,-71.0275,-76.50115700000001,-69.765261,-84.5467,-93.09399999999999,-92.189283,-90.20699999999999,-112.027031,-78.63800000000001,-100.779004,-96.67534499999999,-71.549127,-74.75613800000001,-105.964575,-119.753877,-73.781339,-83.000647,-97.534994,-123.029159,-76.875613,-66.59010000000001,-71.422132,-81.035,-100.336378,-86.78400000000001,-97.75,77.01300000000001,-111.892622,-77.45999999999999,-72.57194,-122.893077,-89.384444,-81.63329400000001,-104.802042],{"iconUrl":{"data":"https://cdn1.iconfinder.com/data/icons/space-butterscotch-vol-2/256/Orbital_Station-1024.png","index":0},"iconWidth":20,"iconHeight":20},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["AL, Montgomery<br>Next 3 Passes: <br>2025-06-08 13:31:44.306 UTC<br>2025-06-08 21:40:44.306 UTC<br>2025-06-09 20:52:19.306 UTC","AR, Little Rock<br>Next 3 Passes: <br>2025-06-08 15:08:00.008 UTC<br>2025-06-08 21:39:20.008 UTC<br>2025-06-09 14:19:20.008 UTC","AZ, Phoenix<br>Next 3 Passes: <br>2025-06-08 15:04:34.776 UTC<br>2025-06-08 23:12:59.776 UTC<br>2025-06-09 15:52:44.776 UTC","CA, Sacramento<br>Next 3 Passes: <br>2025-06-08 16:40:25.236 UTC<br>2025-06-08 23:10:35.236 UTC<br>2025-06-09 15:52:05.236 UTC","CO, Denver<br>Next 3 Passes: <br>2025-06-08 15:06:50.44 UTC<br>2025-06-08 21:36:25.44 UTC<br>2025-06-09 15:54:55.44 UTC","CT, Hartford<br>Next 3 Passes: <br>2025-06-08 13:35:30.642 UTC<br>2025-06-08 20:04:40.642 UTC<br>2025-06-09 12:47:20.642 UTC","DC, District of Columbia<br>Next 3 Passes: <br>2025-06-08 13:34:20.847 UTC<br>2025-06-08 20:04:25.847 UTC<br>2025-06-09 12:46:10.847 UTC","DE, Dover<br>Next 3 Passes: <br>2025-06-08 13:34:36.072 UTC<br>2025-06-08 20:04:36.072 UTC<br>2025-06-09 12:46:26.072 UTC","FL, Tallahassee<br>Next 3 Passes: <br>2025-06-08 13:31:36.278 UTC<br>2025-06-08 21:41:26.278 UTC<br>2025-06-09 12:43:21.278 UTC","GA, Atlanta<br>Next 3 Passes: <br>2025-06-08 13:32:16.506 UTC<br>2025-06-08 21:40:51.506 UTC<br>2025-06-09 20:52:21.506 UTC","HI, Honolulu<br>Next 3 Passes: <br>2025-06-08 03:09:51.708 UTC<br>2025-06-08 18:07:56.708 UTC<br>2025-06-09 17:19:26.708 UTC","IA, Des Moines<br>Next 3 Passes: <br>2025-06-08 15:08:42.541 UTC<br>2025-06-08 21:37:57.541 UTC<br>2025-06-09 14:20:27.541 UTC","ID, Boise<br>Next 3 Passes: <br>2025-06-08 16:42:01.911 UTC<br>2025-06-08 21:33:56.911 UTC<br>2025-06-08 23:10:41.911 UTC","IL, Springfield<br>Next 3 Passes: <br>2025-06-08 15:09:07.127 UTC<br>2025-06-08 21:38:57.127 UTC<br>2025-06-09 14:20:37.127 UTC","IN, Indianapolis<br>Next 3 Passes: <br>2025-06-08 15:09:47.337 UTC<br>2025-06-08 21:39:32.337 UTC<br>2025-06-09 14:21:12.337 UTC","KS, Topeka<br>Next 3 Passes: <br>2025-06-08 15:07:57.744 UTC<br>2025-06-08 21:38:02.744 UTC<br>2025-06-09 14:19:37.744 UTC","KY, Frankfort<br>Next 3 Passes: <br>2025-06-08 21:40:02.951 UTC<br>2025-06-09 14:21:12.951 UTC<br>2025-06-09 20:51:27.951 UTC","LA, Baton Rouge<br>Next 3 Passes: <br>2025-06-08 13:30:43.207 UTC<br>2025-06-08 21:40:23.207 UTC<br>2025-06-10 13:30:18.207 UTC","MA, Boston<br>Next 3 Passes: <br>2025-06-08 13:35:53.823 UTC<br>2025-06-08 20:04:53.823 UTC<br>2025-06-09 12:47:38.823 UTC","MD, Annapolis<br>Next 3 Passes: <br>2025-06-08 13:34:28.62 UTC<br>2025-06-08 20:04:28.62 UTC<br>2025-06-09 12:46:13.62 UTC","ME, Augusta<br>Next 3 Passes: <br>2025-06-08 13:36:23.413 UTC<br>2025-06-08 15:13:23.413 UTC<br>2025-06-08 18:27:58.413 UTC","MI, Lansing<br>Next 3 Passes: <br>2025-06-08 15:10:24.031 UTC<br>2025-06-08 20:02:34.031 UTC<br>2025-06-09 14:21:54.031 UTC","MN, St Paul<br>Next 3 Passes: <br>2025-06-08 15:09:24.242 UTC<br>2025-06-08 16:46:14.242 UTC<br>2025-06-08 20:00:49.242 UTC","MO, Jefferson City<br>Next 3 Passes: <br>2025-06-08 15:08:29.709 UTC<br>2025-06-08 21:38:39.709 UTC<br>2025-06-09 14:19:59.709 UTC","MS, Jackson<br>Next 3 Passes: <br>2025-06-08 13:31:14.484 UTC<br>2025-06-08 21:40:09.484 UTC<br>2025-06-09 14:19:29.484 UTC","MT, Helena<br>Next 3 Passes: <br>2025-06-08 16:43:09.933 UTC<br>2025-06-08 18:19:59.933 UTC<br>2025-06-08 19:57:19.933 UTC","NC, Raleigh<br>Next 3 Passes: <br>2025-06-08 13:33:31.483 UTC<br>2025-06-09 12:45:16.483 UTC<br>2025-06-09 20:52:56.483 UTC","ND, Bismarck<br>Next 3 Passes: <br>2025-06-08 16:45:11.705 UTC<br>2025-06-08 18:22:06.705 UTC<br>2025-06-08 19:59:06.705 UTC","NE, Lincoln<br>Next 3 Passes: <br>2025-06-08 15:08:10.144 UTC<br>2025-06-08 21:37:35.144 UTC<br>2025-06-09 14:19:55.144 UTC","NH, Concord<br>Next 3 Passes: <br>2025-06-08 13:36:00.592 UTC<br>2025-06-08 18:27:50.592 UTC<br>2025-06-08 20:04:40.592 UTC","NJ, Trenton<br>Next 3 Passes: <br>2025-06-08 13:34:55.821 UTC<br>2025-06-08 20:04:30.821 UTC<br>2025-06-09 12:46:45.821 UTC","NM, Santa Fe<br>Next 3 Passes: <br>2025-06-08 15:05:46.027 UTC<br>2025-06-08 23:13:41.027 UTC<br>2025-06-09 22:25:11.027 UTC","NV, Carson City<br>Next 3 Passes: <br>2025-06-08 16:40:45.361 UTC<br>2025-06-08 23:10:45.361 UTC<br>2025-06-09 15:52:25.361 UTC","NY, Albany<br>Next 3 Passes: <br>2025-06-08 13:35:31.257 UTC<br>2025-06-08 15:12:31.257 UTC<br>2025-06-08 20:04:21.257 UTC","OH, Columbus<br>Next 3 Passes: <br>2025-06-08 15:10:26.938 UTC<br>2025-06-08 20:03:16.938 UTC<br>2025-06-09 14:21:46.938 UTC","OK, Oklahoma City<br>Next 3 Passes: <br>2025-06-08 15:07:07.16 UTC<br>2025-06-08 21:38:22.16 UTC<br>2025-06-09 14:18:37.16 UTC","OR, Salem<br>Next 3 Passes: <br>2025-06-08 18:17:52.394 UTC<br>2025-06-08 21:32:32.394 UTC<br>2025-06-08 23:09:22.394 UTC","PA, Harrisburg<br>Next 3 Passes: <br>2025-06-08 13:34:37.629 UTC<br>2025-06-08 20:04:12.629 UTC<br>2025-06-09 14:23:02.629 UTC","PR, San Juan<br>Next 3 Passes: <br>2025-06-08 11:55:27.843 UTC<br>2025-06-08 21:46:52.843 UTC<br>2025-06-09 11:06:57.843 UTC","RI, Providence<br>Next 3 Passes: <br>2025-06-08 13:35:43.048 UTC<br>2025-06-08 20:04:53.048 UTC<br>2025-06-09 12:47:28.048 UTC","SC, Columbia<br>Next 3 Passes: <br>2025-06-08 13:32:48.271 UTC<br>2025-06-08 21:41:23.271 UTC<br>2025-06-09 12:44:33.271 UTC","SD, Pierre<br>Next 3 Passes: <br>2025-06-08 16:44:48.472 UTC<br>2025-06-08 19:59:38.472 UTC<br>2025-06-08 21:36:28.472 UTC","TN, Nashville<br>Next 3 Passes: <br>2025-06-08 13:32:33.69 UTC<br>2025-06-08 21:39:58.69 UTC<br>2025-06-09 14:20:38.69 UTC","TX, Austin<br>Next 3 Passes: <br>2025-06-09 14:17:38.911 UTC<br>2025-06-09 22:27:33.911 UTC<br>2025-06-10 13:29:13.911 UTC","US, District of Columbia<br>Next 3 Passes: <br>2025-06-08 04:19:29.139 UTC<br>2025-06-08 10:49:29.139 UTC<br>2025-06-09 03:30:54.139 UTC","UT, Salt Lake City<br>Next 3 Passes: <br>2025-06-08 16:42:19.347 UTC<br>2025-06-08 21:35:04.347 UTC<br>2025-06-08 23:11:54.347 UTC","VA, Richmond<br>Next 3 Passes: <br>2025-06-08 13:33:59.799 UTC<br>2025-06-08 20:04:34.799 UTC<br>2025-06-09 12:45:49.799 UTC","VT, Montpelier<br>Next 3 Passes: <br>2025-06-08 13:36:04.574 UTC<br>2025-06-08 15:12:49.574 UTC<br>2025-06-08 18:27:34.574 UTC","WA, Olympia<br>Next 3 Passes: <br>2025-06-08 18:18:05.023 UTC<br>2025-06-08 19:55:15.023 UTC<br>2025-06-08 21:32:20.023 UTC","WI, Madison<br>Next 3 Passes: <br>2025-06-08 15:09:40.48 UTC<br>2025-06-08 20:01:40.48 UTC<br>2025-06-09 14:21:15.48 UTC","WV, Charleston<br>Next 3 Passes: <br>2025-06-08 13:33:40.253 UTC<br>2025-06-08 20:03:45.253 UTC<br>2025-06-09 14:21:55.253 UTC","WY, Cheyenne<br>Next 3 Passes: <br>2025-06-08 16:43:45.709 UTC<br>2025-06-08 21:36:10.709 UTC<br>2025-06-09 15:55:05.709 UTC"],null,null,null,["AL, Montgomery<br>Next Pass: <br>2025-06-08 13:31:44.306 UTC","AR, Little Rock<br>Next Pass: <br>2025-06-08 15:08:00.008 UTC","AZ, Phoenix<br>Next Pass: <br>2025-06-08 15:04:34.776 UTC","CA, Sacramento<br>Next Pass: <br>2025-06-08 16:40:25.236 UTC","CO, Denver<br>Next Pass: <br>2025-06-08 15:06:50.44 UTC","CT, Hartford<br>Next Pass: <br>2025-06-08 13:35:30.642 UTC","DC, District of Columbia<br>Next Pass: <br>2025-06-08 13:34:20.847 UTC","DE, Dover<br>Next Pass: <br>2025-06-08 13:34:36.072 UTC","FL, Tallahassee<br>Next Pass: <br>2025-06-08 13:31:36.278 UTC","GA, Atlanta<br>Next Pass: <br>2025-06-08 13:32:16.506 UTC","HI, Honolulu<br>Next Pass: <br>2025-06-08 03:09:51.708 UTC","IA, Des Moines<br>Next Pass: <br>2025-06-08 15:08:42.541 UTC","ID, Boise<br>Next Pass: <br>2025-06-08 16:42:01.911 UTC","IL, Springfield<br>Next Pass: <br>2025-06-08 15:09:07.127 UTC","IN, Indianapolis<br>Next Pass: <br>2025-06-08 15:09:47.337 UTC","KS, Topeka<br>Next Pass: <br>2025-06-08 15:07:57.744 UTC","KY, Frankfort<br>Next Pass: <br>2025-06-08 21:40:02.951 UTC","LA, Baton Rouge<br>Next Pass: <br>2025-06-08 13:30:43.207 UTC","MA, Boston<br>Next Pass: <br>2025-06-08 13:35:53.823 UTC","MD, Annapolis<br>Next Pass: <br>2025-06-08 13:34:28.62 UTC","ME, Augusta<br>Next Pass: <br>2025-06-08 13:36:23.413 UTC","MI, Lansing<br>Next Pass: <br>2025-06-08 15:10:24.031 UTC","MN, St Paul<br>Next Pass: <br>2025-06-08 15:09:24.242 UTC","MO, Jefferson City<br>Next Pass: <br>2025-06-08 15:08:29.709 UTC","MS, Jackson<br>Next Pass: <br>2025-06-08 13:31:14.484 UTC","MT, Helena<br>Next Pass: <br>2025-06-08 16:43:09.933 UTC","NC, Raleigh<br>Next Pass: <br>2025-06-08 13:33:31.483 UTC","ND, Bismarck<br>Next Pass: <br>2025-06-08 16:45:11.705 UTC","NE, Lincoln<br>Next Pass: <br>2025-06-08 15:08:10.144 UTC","NH, Concord<br>Next Pass: <br>2025-06-08 13:36:00.592 UTC","NJ, Trenton<br>Next Pass: <br>2025-06-08 13:34:55.821 UTC","NM, Santa Fe<br>Next Pass: <br>2025-06-08 15:05:46.027 UTC","NV, Carson City<br>Next Pass: <br>2025-06-08 16:40:45.361 UTC","NY, Albany<br>Next Pass: <br>2025-06-08 13:35:31.257 UTC","OH, Columbus<br>Next Pass: <br>2025-06-08 15:10:26.938 UTC","OK, Oklahoma City<br>Next Pass: <br>2025-06-08 15:07:07.16 UTC","OR, Salem<br>Next Pass: <br>2025-06-08 18:17:52.394 UTC","PA, Harrisburg<br>Next Pass: <br>2025-06-08 13:34:37.629 UTC","PR, San Juan<br>Next Pass: <br>2025-06-08 11:55:27.843 UTC","RI, Providence<br>Next Pass: <br>2025-06-08 13:35:43.048 UTC","SC, Columbia<br>Next Pass: <br>2025-06-08 13:32:48.271 UTC","SD, Pierre<br>Next Pass: <br>2025-06-08 16:44:48.472 UTC","TN, Nashville<br>Next Pass: <br>2025-06-08 13:32:33.69 UTC","TX, Austin<br>Next Pass: <br>2025-06-09 14:17:38.911 UTC","US, District of Columbia<br>Next Pass: <br>2025-06-08 04:19:29.139 UTC","UT, Salt Lake City<br>Next Pass: <br>2025-06-08 16:42:19.347 UTC","VA, Richmond<br>Next Pass: <br>2025-06-08 13:33:59.799 UTC","VT, Montpelier<br>Next Pass: <br>2025-06-08 13:36:04.574 UTC","WA, Olympia<br>Next Pass: <br>2025-06-08 18:18:05.023 UTC","WI, Madison<br>Next Pass: <br>2025-06-08 15:09:40.48 UTC","WV, Charleston<br>Next Pass: <br>2025-06-08 13:33:40.253 UTC","WY, Cheyenne<br>Next Pass: <br>2025-06-08 16:43:45.709 UTC"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addPolylines","args":[[[[{"lng":[-157.826182,77.01300000000001,-66.59010000000001,-91.14022900000001,-90.20699999999999,-84.27276999999999,-86.279118,-84.39,-86.78400000000001,-81.035,-78.63800000000001,-81.63329400000001,-77.45999999999999,-77.01300000000001,-76.50115700000001,-75.52675499999999,-76.875613,-74.75613800000001,-72.67700000000001,-73.781339,-71.422132,-71.0275,-71.549127,-72.57194,-69.765261,-112.073844,-105.964575,-104.984167,-97.534994,-95.69,-92.33112199999999,-96.67534499999999,-92.189283,-93.62086600000001,-89.650373,-93.09399999999999,-89.384444,-86.147685,-84.5467,-83.000647,-121.468926,-119.753877,-116.237651,-111.892622,-112.027031,-104.802042,-100.336378,-100.779004,-123.029159,-122.893077,-84.86311000000001,-97.75],"lat":[21.30895,38.913,18.2208,30.45809,32.32,30.4518,32.361538,33.76,36.165,34,35.771,38.349497,37.54,38.913,38.972945,39.161921,40.269789,40.221741,41.767,42.659829,41.82355,42.2352,43.220093,44.26639,44.323535,33.448457,35.667231,39.7391667,35.482309,39.04,34.736009,40.809868,38.572954,41.590939,39.78325,44.95,43.074722,39.790942,42.7335,39.962245,38.555605,39.160949,43.613739,40.7547,46.595805,41.145548,44.367966,48.813343,44.931109,47.042418,38.197274,30.266667]}]]],null,null,{"interactive":true,"className":"","stroke":true,"color":"red","weight":2,"opacity":0.5,"fill":false,"fillColor":"red","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[39.8283,-98.5795],3,[]],"limits":{"lat":[18.2208,48.813343],"lng":[-157.826182,77.01300000000001]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{potkey2025,
+  author = {Potkey, Sydney},
+  title = {Lab 7},
+  date = {2025-06-07},
+  url = {https://SydneyPotkey.github.io/Posts/06_04_25_Lab7/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-potkey2025" class="csl-entry quarto-appendix-citeas" role="listitem">
+Potkey, Sydney. 2025. <span>“Lab 7.”</span> June 7, 2025. <a href="https://SydneyPotkey.github.io/Posts/06_04_25_Lab7/">https://SydneyPotkey.github.io/Posts/06_04_25_Lab7/</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    window.setColorSchemeToggle(window.hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,199 @@
+---
+title: "Lab 9"
+description: "Generative Art"
+author:
+  - name: Sydney Potkey
+    url: https://SydneyPotkey.github.io/
+date: 06-07-2025
+citation: 
+  url: https://SydneyPotkey.github.io/Posts/06_04_25_Lab9/ 
+image: "images/download.jpg"
+draft: false 
+---
+# Set up
+
+```{r}
+#| message: false
+library(tidyverse)
+library(scales)
+library(ggcorrplot)
+library(rayshader)
+library(ambient)
+library(ggthemes)
+library(tictoc)
+
+```
+
+# Piece 1: Plotting
+
+## Color Pallette
+
+```{r}
+
+# from coolors.com 
+pal <- c("#FFBF69", "#FFFFFF", "#CBF3F0")
+
+# generating gradient function
+palette_gen <- colorRampPalette(pal)
+
+# checking gradient 
+image(x = matrix(1:100, ncol = 1), 
+  col = palette_gen(100),
+  useRaster = TRUE,
+  axes = FALSE)
+
+```
+
+# Shells Two Ways
+
+## using ggcorrplot
+
+```{r}
+
+#generate corr data
+generate_random_corr <- function(n_vars = 20, seed = NULL) {
+  if (!is.null(seed)) set.seed(seed)
+  mat <- matrix(rnorm(n_vars^2),
+                nrow = n_vars)
+  corr <- cor(mat)
+  colnames(corr) <- paste0("V", 1:n_vars)
+  rownames(corr) <- paste0("V", 1:n_vars)
+  
+  return(corr)
+}
+
+
+
+# plot function
+styled_corr_plot <- function(pal, corr) {
+  ggcorrplot(corr,
+             type = "lower",
+             lab_size = 3,
+             method = "circle",
+             colors = pal,
+             ggtheme = theme_void(),
+             show.legend = FALSE) +
+    theme(axis.text.x = element_blank(),
+                             axis.text.y = element_blank(),
+                             axis.ticks = element_blank(),
+                             panel.grid = element_blank())
+  
+}
+
+#pal <- palette_gen(45)
+
+corr_dat <- generate_random_corr(n_vars = 20, seed = 5)
+
+styled_corr_plot(pal, corr_dat)
+
+
+```
+
+## using geom_tile
+
+```{r}
+
+custom_corr_plot <- function(corr, pal, alpha_range = c(0.2, 1)) {
+  corr_long <- as.data.frame(corr) |>
+    rownames_to_column("Var1") |>
+    pivot_longer(-Var1, names_to = "Var2",
+                 values_to = "corr")
+
+  # Plot
+  ggplot(corr_long,
+         aes(x = Var1,
+             y = Var2,
+             fill = corr,
+             alpha = abs(corr)),
+         show.legend = FALSE) +
+    geom_tile(color = "white") +
+    scale_fill_gradient2(low = pal[1],
+                         mid = pal[round(length(pal)/2)],
+                         high = pal[length(pal)], 
+                         midpoint = 0) +
+    scale_alpha(range = alpha_range,
+                guide = "none") +
+    coord_fixed() +
+    theme_void() +
+    theme(axis.text.x = element_blank(),
+          axis.text.y = element_blank(),
+          axis.ticks = element_blank(),
+          panel.grid = element_blank(),
+          legend.position = "none")
+}
+
+pal <- palette_gen(45)
+corr_dat <- generate_random_corr(n_vars = 20, seed = 5)
+
+custom_corr_plot(corr_dat, pal)
+
+
+
+```
+
+Artistic Description: Both of these generative pieces walk the line between nature and technology. They present as abstract, reflective, and bright. Both are meant to resemble a seascape. Coding Description: I tried out this piece two ways and could not decide which I liked better. The first one uses ggcorrplot which is a library that I found while googling cool ggplot types. Usually the specified portion of the graph represents correlation of variable lined up along the x and y axis. I was drawn to this because the plot already sizes the circles based on correlation strength so I thought it would create interesting art. I made the second peice due to the limitations of ggcorrplot. Using geom tile allowed for many more specifications such as using the fill gradient and adding an alpha factor.
+
+# Walkable Green City
+
+```{r}
+
+my_colors <- colorRampPalette(c("#64d0a2", "#a1e58c", "#359ea7"))(256)
+
+
+additive_ridges <- function(n = 10, pixels = 1000, seed = NULL) {
+  
+  if (!is.null(seed)) set.seed(seed)
+  
+  # setup canvas
+  art <- long_grid(
+    x = seq(0, 1, length.out = pixels),
+    y = seq(0, 1, length.out = pixels)
+  )
+  art$paint <- 0
+  
+  for (i in 1:n) {
+    orientation <- sample(c("vertical", "horizontal", "diagonal"), 1)
+    center <- runif(1, 0, 1)
+    width <- runif(1, min = 0.005, max = 0.075)  
+    
+    art <- art |>
+      mutate(paint = paint + case_when(
+        orientation == "vertical" ~ as.numeric(abs(x - center) < width),
+        orientation == "horizontal" ~ as.numeric(abs(y - center) < width),
+        orientation == "diagonal" ~ as.numeric(abs((x + y)/2 - center) < width)
+      ))
+  }
+  
+  # normalize paint to [0, 1]
+  art$paint <- normalise(art$paint)
+  return(art)
+}
+
+ridge_art <- additive_ridges(10, 1000, 72)
+
+ridge_array <- ridge_art |>
+  as.array(value = paint) 
+
+
+ridge_shadow <- ray_shade(
+  heightmap = ridge_array,
+  sunaltitude = 15, 
+  sunangle = 115,
+  zscale = .01,
+  multicore = TRUE
+)
+
+
+ridge_scape <- ridge_array |> 
+  height_shade(texture = my_colors) |>
+  add_shadow(
+    shadowmap = ridge_shadow,
+    max_darken = .1
+  )
+
+plot_map(ridge_scape, rotate = 270)
+
+
+```
+
+Artistic Description: This peice displays an abstract walkable green city in Sydney's utopia. It represents a the beauty and simplicity of a sustainable future. Code Description: The function that generates the basis of this art allows user input for the amount of ridges or bars in the peice using the n input. The function generates n random horizantal, vertical, and diagonal ridges. Ridge shadow generates our artificail sun (shading) with specified lattitude and height. Ridge scape combines the layers to add shadow to the generated ridges giving the final peice an almost industrial look."

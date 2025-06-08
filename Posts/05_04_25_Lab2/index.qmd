@@ -13,38 +13,28 @@ draft: false
 
 # Visualization 1
 
-1. While there are certainly issues with this image, do your best to tell the
-story of this graph in words. That is, what is this graph telling you? What do
-you think the authors meant to convey with it?
+1.  While there are certainly issues with this image, do your best to tell the story of this graph in words. That is, what is this graph telling you? What do you think the authors meant to convey with it?
 
-This graph is attempting to compare the percent of people who believe vaccines are safe in various countries grouped by region. I think that the authors meant to convey the apprehension certain countries have pertaining to vaccines. 
+This graph is attempting to compare the percent of people who believe vaccines are safe in various countries grouped by region. I think that the authors meant to convey the apprehension certain countries have pertaining to vaccines.
 
-
-2. List the variables that appear to be displayed in this visualization. 
-*Hint: Variables refer to columns in the data.*
+2.  List the variables that appear to be displayed in this visualization. *Hint: Variables refer to columns in the data.*
 
 The variables evident in this graph are region (Americas, Asia, etc.), and percent of population who believe vaccines are safe.
 
+3.  Now that you're versed in the grammar of graphics (e.g., `ggplot`), list the *aesthetics* used and which *variables* are mapped to each.
 
-3. Now that you're versed in the grammar of graphics (e.g., `ggplot`), list the *aesthetics* used and which *variables* are mapped to each.
+It seems like the graph only uses an x axis variable, percent of population who believes vaccines are safe, and a grouping variable, region. The graph does not contai a y axis variable even though points are plotted at different heights.
 
-It seems like the graph only uses an x axis variable, percent of population who believes vaccines are safe, and a grouping variable, region. The graph does not contai a y axis variable even though points are plotted at different heights. 
-
-4. What type of graph would you call this? Meaning, what `geom` would you use
-to produce this plot?
+4.  What type of graph would you call this? Meaning, what `geom` would you use to produce this plot?
 
 I would say this is a geom point.
 
+5.  Provide at least four problems or changes that would improve this graph. *Please format your changes as bullet points!*
 
-5. Provide at least four problems or changes that would improve this graph. 
-*Please format your changes as bullet points!*
-
-* apply a relevant y axis variable or change the style of plot 
-* connect the grid lines 
-* move the region labels to somewhere where they are not crowding 
-* add an x-axis label that tells the reader the numeric values are percents or add percent signs
-
-
+-   apply a relevant y axis variable or change the style of plot
+-   connect the grid lines
+-   move the region labels to somewhere where they are not crowding
+-   add an x-axis label that tells the reader the numeric values are percents or add percent signs
 
 ```{r}
 #| label: read-in-wellcome-data
@@ -61,7 +51,9 @@ world_data <- read_excel("data/wgm2018-dataset-crosstabs-all-countries.xlsx", sh
 
 
 ```
+
 ## Filtering the Data
+
 ```{r}
 #| label: filtering data
 #| message: false
@@ -115,9 +107,8 @@ science_percent <- joined_data |>
   
 
 ```
-6. Improve the visualization above by either re-creating it with the issues you
-identified fixed OR by creating a new visualization that you believe tells the
-same story better.
+
+6.  Improve the visualization above by either re-creating it with the issues you identified fixed OR by creating a new visualization that you believe tells the same story better.
 
 ```{r}
 #| label: new-and-improved-visualization
@@ -169,35 +160,29 @@ girafe(ggobj = plot)
 
 # Part Two: Broad Visualization Improvement
 
-The full Wellcome Global Monitor 2018 report can be found here: [https://wellcome.ac.uk/sites/default/files/wellcome-global-monitor-2018.pdf](https://wellcome.ac.uk/sites/default/files/wellcome-global-monitor-2018.pdf). 
-Surprisingly, the visualization above does not appear in the report despite the
-citation in the bottom corner of the image!
+The full Wellcome Global Monitor 2018 report can be found here: <https://wellcome.ac.uk/sites/default/files/wellcome-global-monitor-2018.pdf>. Surprisingly, the visualization above does not appear in the report despite the citation in the bottom corner of the image!
 
 # Visualization 2
 
 **For this second plot, you must select a plot that uses maps so you can demonstrate your proficiency with the `leaflet` package!**
 
-7. Select a data visualization in the report that you think could be improved. 
-Be sure to cite both the page number and figure title. Do your best to tell the
-story of this graph in words. That is, what is this graph telling you? What do
-you think the authors meant to convey with it?
+7.  Select a data visualization in the report that you think could be improved. Be sure to cite both the page number and figure title. Do your best to tell the story of this graph in words. That is, what is this graph telling you? What do you think the authors meant to convey with it?
 
-I chose the chloropleth graph from the first page titled Hindi belt scores low while south does better". This graph shows the female labor percentage in Indian states. They are trying to highlight stark differences in labor percentage based on the different states. 
+I chose the chloropleth graph from the first page titled Hindi belt scores low while south does better". This graph shows the female labor percentage in Indian states. They are trying to highlight stark differences in labor percentage based on the different states.
 
-8. List the variables that appear to be displayed in this visualization.
+8.  List the variables that appear to be displayed in this visualization.
 
 State and female labor percent
 
-9. Now that you're versed in the grammar of graphics (ggplot), list the
-aesthetics used and which variables are specified for each.
+9.  Now that you're versed in the grammar of graphics (ggplot), list the aesthetics used and which variables are specified for each.
 
 This graph does not use gg plot.
 
 10. What type of graph would you call this?
 
-Chloropleth 
+Chloropleth
 
-11. List all of the problems or things you would improve about this graph. 
+11. List all of the problems or things you would improve about this graph.
 
 The main problem is the legend. The scale used for the legen is not standard and does not make sense. It could also be misleading since each color gradient represents a different amount of change. ex. the first shade represents 4.1-15.4, a change of about 11 percentage point, but the second shade represents 15.5-19.9, only about 4 percentage points.
 
@@ -265,20 +250,16 @@ leaflet(map_data) |>
 # Visualization 3
 
 **For this third plot, you must use one of the other `ggplot2` extension packages mentioned this week (e.g., `gganimate`, `plotly`, `patchwork`, `cowplot`).**
- 
-13. Select a data visualization in the report that you think could be improved. 
-Be sure to cite both the page number and figure title. Do your best to tell the
-story of this graph in words. That is, what is this graph telling you? What do
-you think the authors meant to convey with it?
 
-I used the visualization titled "Average Female height per Country. This graph shows the differences in height for multiple countries across different continents. It uses female figures to display that these are the heights of female residents specifically. 
+13. Select a data visualization in the report that you think could be improved. Be sure to cite both the page number and figure title. Do your best to tell the story of this graph in words. That is, what is this graph telling you? What do you think the authors meant to convey with it?
+
+I used the visualization titled "Average Female height per Country. This graph shows the differences in height for multiple countries across different continents. It uses female figures to display that these are the heights of female residents specifically.
 
 14. List the variables that appear to be displayed in this visualization.
 
 Country and height
 
-15. Now that you're versed in the grammar of graphics (ggplot), list the
-aesthetics used and which variables are specified for each.
+15. Now that you're versed in the grammar of graphics (ggplot), list the aesthetics used and which variables are specified for each.
 
 The aesthetics of this graph are y = height, fill = country, x = country
 
@@ -286,10 +267,9 @@ The aesthetics of this graph are y = height, fill = country, x = country
 
 A bar chart
 
-17. List all of the problems or things you would improve about this graph.  
+17. List all of the problems or things you would improve about this graph.
 
-This graph is very misleading since it uses figures as the bars i the bar chart. The figures are scaled so instead of just showing differences in height they shrink completely. Also the title could be improved and the y axis needs to begin at 0. 
-
+This graph is very misleading since it uses figures as the bars i the bar chart. The figures are scaled so instead of just showing differences in height they shrink completely. Also the title could be improved and the y axis needs to begin at 0.
 
 18. Improve the visualization above by either re-creating it with the issues you identified fixed OR by creating a new visualization that you believe tells the same story better.
 
